@@ -4,6 +4,9 @@
     <groupId>cn.chenzw.denpendence</groupId>
     <artifactId>java-denpendence-samples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>javassist-samples</module>
+    </modules>
     <packaging>pom</packaging>
 
 
