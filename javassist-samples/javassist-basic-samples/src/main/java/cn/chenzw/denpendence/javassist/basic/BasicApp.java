@@ -10,6 +10,18 @@ public class BasicApp {
         // 创建类
         CtClass ctClass = classPool.makeClass("cn.chenzw.test.TestApp");
 
+
+        // 无参构造器
+        CtConstructor constructor = new CtConstructor(null, ctClass);
+        constructor.setModifiers(Modifier.PUBLIC);
+        constructor.setBody("{}");
+        ctClass.addConstructor(constructor);
+        // 参数构造器
+        constructor = new CtConstructor(new CtClass[]{classPool.get(String.class.getName())}, ctClass);
+        constructor.setModifiers(Modifier.PUBLIC);
+        constructor.setBody("{this.value=$1;}");
+        ctClass.addConstructor(constructor);
+
         // 创建方法
         CtMethod ctMethod = CtNewMethod.make("public void run(){}", ctClass);
         ctMethod.insertBefore("System.out.println(\"hello world.....\");");
@@ -18,6 +30,8 @@ public class BasicApp {
         // 创建字段
         CtField ctField = new CtField(classPool.get(String.class.getName()), "userName", ctClass);
         ctField.setModifiers(Modifier.PUBLIC);
+        ctClass.addMethod(CtNewMethod.setter("setUserName", ctField));
+        ctClass.addMethod(CtNewMethod.getter("getUserName", ctField));
         ctClass.addField(ctField);
 
         // 生成Class对象
