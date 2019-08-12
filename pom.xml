@@ -6,6 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>javassist-samples</module>
+        <module>commons-cli-samples</module>
     </modules>
     <packaging>pom</packaging>
 
