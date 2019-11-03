@@ -38,9 +38,6 @@ public class BasicTest {
 
         Assert.assertEquals(staff.toString(), "Staff{sId=1, sName='张三', cars2=[Car{brand='法拉利'}]}");
 
-
-
-
     }
 
 

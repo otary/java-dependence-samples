@@ -4,10 +4,19 @@
     <groupId>cn.chenzw.denpendence</groupId>
     <artifactId>java-denpendence-samples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <modules>
         <module>javassist-samples</module>
         <module>commons-cli-samples</module>
         <module>dozer-samples</module>
+        <module>guava-samples</module>
+        <module>http-samples</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -18,7 +27,15 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
+
 
 
 </project>
