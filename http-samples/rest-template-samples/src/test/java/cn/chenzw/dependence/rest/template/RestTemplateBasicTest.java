@@ -1,6 +1,7 @@
 package cn.chenzw.dependence.rest.template;
 
 import cn.chenzw.dependence.rest.template.interceptors.LoggingClientHttpRequestInterceptor;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,7 +29,7 @@ public class RestTemplateBasicTest {
 
         String result = restTemplate.getForObject("https://api.github.com/repositories", String.class);
 
-        System.out.println(result);
+        Assert.assertNotNull(result);
     }
 
 
