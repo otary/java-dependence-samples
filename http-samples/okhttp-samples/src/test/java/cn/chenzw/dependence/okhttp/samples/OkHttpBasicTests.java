@@ -10,7 +10,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.io.IOException;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 @RunWith(JUnit4.class)
 public class OkHttpBasicTests {
@@ -42,7 +41,7 @@ public class OkHttpBasicTests {
      * @throws IOException
      */
     @Test
-    public void testBasicAsync() throws IOException {
+    public void testBasicAsync()  {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().url("http://www.baidu.com").build();
 
