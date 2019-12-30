@@ -4,6 +4,7 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okio.Buffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,15 +19,14 @@ public class LoggingInterceptor implements Interceptor {
 
         Request request = chain.request();
 
-       // logger.info(" [request]> uri:{}, body:{}", request.url(), request.body());
+        Buffer buffer = new Buffer();
+        request.body().writeTo(buffer);
+
+        logger.info(" [request]> uri:{}, body:{}", request.url(), buffer.readUtf8());
 
         Response response = chain.proceed(request);
 
-
-        // logger.info(" [response]> code:{}, message:{}, body:{}", response.code(), response.message(), response.peekBody(1024*1024).string());
-
-       // logger.info(" [response]> code:{}, message:{}, body:{}", response.code(), response.message());
-
+        logger.info(" [response]> code:{}, message:{}, body:{}", response.code(), response.message(), response.peekBody(1024).string());
 
         return response;
     }
