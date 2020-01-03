@@ -18,6 +18,7 @@
         <module>guava-samples</module>
         <module>http-samples</module>
         <module>commons-net-samples</module>
+        <module>test-samples</module>
     </modules>
     <packaging>pom</packaging>
 
