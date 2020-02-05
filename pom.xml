@@ -19,6 +19,7 @@
         <module>http-samples</module>
         <module>commons-net-samples</module>
         <module>test-samples</module>
+        <module>reactor-samples</module>
     </modules>
     <packaging>pom</packaging>
 
