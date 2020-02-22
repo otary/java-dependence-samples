@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>guava-cache-samples</module>
+        <module>guava-concurrent-samples</module>
     </modules>
 
 
