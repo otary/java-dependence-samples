@@ -22,6 +22,7 @@
         <module>reactor-samples</module>
         <module>selenium-samples</module>
         <module>netty-samples</module>
+        <module>webmagic-samples</module>
     </modules>
     <packaging>pom</packaging>
 
