@@ -23,6 +23,7 @@
         <module>selenium-samples</module>
         <module>netty-samples</module>
         <module>webmagic-samples</module>
+        <module>pdf-samples</module>
     </modules>
     <packaging>pom</packaging>
 
