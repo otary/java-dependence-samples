@@ -27,12 +27,6 @@ public class RateLimiterTests {
         RateLimiter rateLimiter = RateLimiter.create(5);
         for (int i = 0; i < 50; i++) {
             logger.info("{} - {}", dateFormat.format(Calendar.getInstance().getTime()), rateLimiter.acquire());
-
-            /*if (rateLimiter.tryAcquire()) {
-                System.out.println("获取成功");
-            } else {
-                System.out.println("--获取失败!");
-            }*/
         }
     }
 
