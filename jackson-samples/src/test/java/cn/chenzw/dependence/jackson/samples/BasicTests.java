@@ -17,7 +17,7 @@ public class BasicTests {
 
     @Test
     public void testDeserializer() throws JsonProcessingException {
-        String str = "{\"id\": 1, \"name\": \"张三\", \"birth\": \"2020-09-20 10:20:40\", \"test\": \"test1\", \"test2\":\"test21\", \"sex\": \"男\"}";
+        String str = "{\"id\": 1, \"name\": \"张三\", \"birth\": \"2020-09-20 10:20:40\", \"test\": \"test1\", \"test2\":\"test21\", \"sex\": \"男\", \"password\":\"12345\"}";
 
         ObjectMapper objectMapper = new ObjectMapper();
         User user = objectMapper.readValue(str, User.class);
@@ -30,8 +30,17 @@ public class BasicTests {
         // 忽略字段
         assertNull(user.getSex());
 
+        // 只写，可读
+        assertEquals("12345", user.getPassword());
+
         assertThat(user.getExt(), Matchers.hasEntry("test", "test1"));
         assertThat(user.getExt(), Matchers.hasEntry("test2", "test21"));
         assertThat(user.getExt(), Matchers.hasEntry("sex", "男"));
+
+
+        String str2 = objectMapper.writeValueAsString(user);
+        // password字段不可写
+        System.out.println(str2);
     }
+
 }

@@ -1,6 +1,5 @@
 package cn.chenzw.dependence.okhttp.samples;
 
-import cn.chenzw.dependence.okhttp.samples.domain.User;
 import cn.chenzw.dependence.okhttp.samples.interceptors.LoggingInterceptor;
 import okhttp3.*;
 import org.hamcrest.Matchers;

@@ -1,9 +1,9 @@
 package cn.chenzw.dependence.jackson.samples.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -33,5 +33,10 @@ public class User {
     @JsonIgnore
     private String sex;
 
+    /**
+     * 只写，不读
+     */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
 
 }
