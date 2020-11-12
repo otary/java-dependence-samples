@@ -23,8 +23,9 @@
         <module>selenium-samples</module>
         <module>netty-samples</module>
         <module>webmagic-samples</module>
-        <module>pdf-samples</module>
         <module>jackson-samples</module>
+        <module>minio-samples</module>
+        <module>ws-samples</module>
     </modules>
     <packaging>pom</packaging>
 
