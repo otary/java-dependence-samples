@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 
 @RunWith(JUnit4.class)
 public class OkHttpBasicTests {
@@ -40,7 +42,7 @@ public class OkHttpBasicTests {
      * @throws IOException
      */
     @Test
-    public void testBasicAsync()  {
+    public void testBasicAsync() {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().url("http://www.baidu.com").build();
 
@@ -95,6 +97,35 @@ public class OkHttpBasicTests {
         // 最后response必须关闭，否则会导致溢出
         response.close();
 
+    }
+
+    /**
+     * 使用代理请求
+     */
+    @Test
+    public void testWithProxy() throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggingInterceptor())
+                // 设置代理地址
+                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("192.168.13.19", 7777)))
+                .proxyAuthenticator(new Authenticator() {
+
+                    @Override
+                    public Request authenticate(Route route, Response response) throws IOException {
+                        //设置代理服务器账号密码
+                        String credential = Credentials.basic("xxx", "xxxx");
+                        return response.request().newBuilder()
+                                .header("Proxy-Authorization", credential)
+                                .build();
+                    }
+                })
+                .build();
+
+        Request request = new Request.Builder().url("https://www.baidu.com").build();
+        Response response = okHttpClient.newCall(request).execute();
+        if (response.isSuccessful()) {
+            System.out.println(response.body().string());
+        }
     }
 
 }

@@ -1,9 +1,6 @@
 package cn.chenzw.dependence.okhttp.samples.interceptors;
 
-import okhttp3.Interceptor;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import okhttp3.*;
 import okio.Buffer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +17,10 @@ public class LoggingInterceptor implements Interceptor {
         Request request = chain.request();
 
         Buffer buffer = new Buffer();
-        request.body().writeTo(buffer);
-
+        RequestBody requestBody = request.body();
+        if (requestBody != null) {
+            request.body().writeTo(buffer);
+        }
         logger.info(" [request]> uri:{}, body:{}", request.url(), buffer.readUtf8());
 
         Response response = chain.proceed(request);
