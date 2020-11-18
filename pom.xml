@@ -26,6 +26,7 @@
         <module>jackson-samples</module>
         <module>minio-samples</module>
         <module>ws-samples</module>
+        <module>jsoup-samples</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -65,6 +66,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
         </dependency>
 
     </dependencies>
