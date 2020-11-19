@@ -69,6 +69,28 @@ public class OkHttpBasicTests {
 
     }
 
+    /**
+     * Post请求示例
+     * @throws IOException
+     */
+    @Test
+    public void testPost() throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new LoggingInterceptor()).build();
+
+        RequestBody body = new FormBody.Builder()
+                .add("bookid", "xx")
+                .add("bookName", "yyy").build();
+
+        Request request = new Request.Builder()
+                .url("http://139.199.89.89/api/v1/books")
+                .post(body).build();
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            System.out.println(response.body().string());
+        }
+
+    }
+
 
     /**
      * Get请求带参数 + 日志拦截器
