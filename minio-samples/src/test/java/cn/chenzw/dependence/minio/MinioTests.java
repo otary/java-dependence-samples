@@ -3,6 +3,7 @@ package cn.chenzw.dependence.minio;
 import io.minio.*;
 
 import io.minio.errors.*;
+import io.minio.http.Method;
 import org.apache.commons.io.IOUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -33,12 +34,7 @@ public class MinioTests {
      * 上传
      */
     @Test
-    public void testPutObject() throws IOException,
-            InvalidKeyException, InvalidResponseException,
-            InsufficientDataException, NoSuchAlgorithmException,
-            ServerException, InternalException,
-            XmlParserException, InvalidBucketNameException,
-            ErrorResponseException, RegionConflictException {
+    public void testPutObject() throws Exception {
         BucketExistsArgs bucket = BucketExistsArgs.builder().bucket(MINIO_BUCKET).build();
         // bucket存在才进行上传
         if (minioClient.bucketExists(bucket)) {
@@ -64,7 +60,7 @@ public class MinioTests {
      * 下载
      */
     @Test
-    public void testGetObjectArgs() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+    public void testGetObjectArgs() throws Exception {
         GetObjectArgs getObjectArgs = GetObjectArgs.builder()
                 .bucket(MINIO_BUCKET)
                 .object("rename_a.txt")
@@ -85,11 +81,28 @@ public class MinioTests {
      * 删除
      */
     @Test
-    public void testRemoveObject() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+    public void testRemoveObject() throws Exception {
         RemoveObjectArgs removeObjectArgs = RemoveObjectArgs.builder()
                 .bucket(MINIO_BUCKET)
                 .object("rename_a.txt")
                 .build();
         minioClient.removeObject(removeObjectArgs);
     }
+
+    /**
+     * 获取文件外链
+     */
+    @Test
+    public void testGetPresignedObjectUrl() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, InvalidExpiresRangeException, ServerException, InternalException, NoSuchAlgorithmException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+        GetPresignedObjectUrlArgs getPresignedObjectUrlArgs = GetPresignedObjectUrlArgs.builder()
+                .expiry(7)  // 有效期7天（默认7天）
+                .bucket("test")
+                .object("rename_a.txt")
+                .method(Method.GET)
+                .build();
+        String presignedObjectUrl = minioClient.getPresignedObjectUrl(getPresignedObjectUrlArgs);
+
+        System.out.println(presignedObjectUrl);
+    }
+
 }

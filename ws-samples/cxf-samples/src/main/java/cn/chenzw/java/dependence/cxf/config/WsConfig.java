@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.xml.ws.Endpoint;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.RSAPublicKeySpec;
 
 @Configuration
 public class WsConfig {
@@ -43,6 +45,8 @@ public class WsConfig {
         endpoint.publish("/weather");
         // 无命名空间
         endpoint.getInInterceptors().add(new ServerNameSpaceInterceptor());
+
+
         return endpoint;
     }
 

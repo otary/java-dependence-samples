@@ -25,6 +25,9 @@
         <module>webmagic-samples</module>
         <module>pdf-samples</module>
         <module>jackson-samples</module>
+        <module>ws-samples</module>
+        <module>poi-samples</module>
+        <module>minio-samples</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -21,6 +21,9 @@ public class ModifyClassTests {
     public void testAddMethod() throws NotFoundException, CannotCompileException, IOException {
         ClassPool pool = ClassPool.getDefault();
 
+        // 添加类搜索路径
+        // pool.insertClassPath(new ClassClassPath(this.getClass()));
+
         // 获取类
         CtClass ctClass = pool.get("cn.chenzw.denpendence.javassist.basic.domain.entity.User");
 
