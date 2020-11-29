@@ -1,6 +1,6 @@
 package cn.chenzw.java.dependence.lombok;
 
-import cn.chenzw.denpendence.lombok.domain.Children;
+import cn.chenzw.denpendence.lombok.domain.superbuilder.Children;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
