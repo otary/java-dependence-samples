@@ -31,9 +31,23 @@ public class LombokTests {
     public void testGenericBuilder() {
         Result<String> result = Result.<String>builder()
                 .code("200")
-                .data("message")
+                .data("成功")
+                .success(true)
                 .build();
 
-        log.info("result: " + result);
+        log.info("result: => " + result);
+    }
+
+    /**
+     * 字段值从另一个方法中取
+     */
+    @Test
+    public void testObtainVia() {
+        Result<String> result = Result.<String>builder().build().toBuilder()
+                .success(false)
+                .data("失败")
+                .build();
+
+        log.info("result: => " + result);
     }
 }
