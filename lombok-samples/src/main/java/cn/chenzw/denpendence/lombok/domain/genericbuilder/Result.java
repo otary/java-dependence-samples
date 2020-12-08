@@ -14,7 +14,11 @@ import lombok.ToString;
 @Builder
 public class Result<T> {
 
-    private String code;
+    /**
+     * 指定默认值
+     */
+    @Builder.Default
+    private String code = "200";
 
     private T data;
 }
