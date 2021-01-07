@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Since;
 import com.google.gson.annotations.Until;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -54,6 +55,7 @@ public class User {
     private Map<String, Object> ext = new HashMap<>();
 
     @Data
+    @NoArgsConstructor
     public static class Mobile {
 
         private Long id;

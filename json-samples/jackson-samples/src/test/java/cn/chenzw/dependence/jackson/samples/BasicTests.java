@@ -3,6 +3,8 @@ package cn.chenzw.dependence.jackson.samples;
 import cn.chenzw.dependence.jackson.samples.domain.entity.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,8 @@ import org.junit.runners.JUnit4;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 
 
 @Slf4j
@@ -68,7 +72,7 @@ public class BasicTests {
 
         log.info("default result => {}", defaultJson);
 
-       // objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        // objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
 
         String json = objectMapper.writer()
                 .withFeatures(
@@ -87,49 +91,89 @@ public class BasicTests {
     }
 
     /**
-     *
+     * 字段值排除（空、null）
      */
     @Test
     public void testWriteWithSerializationInclusion() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+        objectMapper.setSerializationInclusion(
+                JsonInclude.Include.NON_EMPTY  // 只输出非空的字段
+                // JsonInclude.Include.NON_NULL  // 只输出非null的字段
+                //  JsonInclude.Include.ALWAYS   // 全输出
+                // JsonInclude.Include.NON_ABSENT
+        );
 
         String json = objectMapper.writeValueAsString(user);
 
         log.info("result => {}", json);
-
     }
 
 
+    /**
+     * 默认反序列化
+     *
+     * @throws JsonProcessingException
+     */
     @Test
-    public void testDeserializer() throws JsonProcessingException {
-      /*  String str = "{\"id\": 1, \"name\": \"张三\", \"birthDate\": \"2020-09-20 10:20:40\", \"test\": \"test1\", \"test2\":\"test21\", \"sex\": \"男\", \"password\":\"12345\"}";
-
+    public void testReadValueDefault() throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        User user = objectMapper.readValue(str, User.class);
 
-        System.out.println(user);
+        User user = objectMapper.readValue("{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"2021-01-07 06:12:25\",\"hapyyDate\":1609999945969,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"}", User.class);
 
-        assertEquals("1", user.getId().toString());
-        assertEquals("张三", user.getName());
-        assertEquals("Sun Sep 20 18:20:40 CST 2020", user.getBirthDate().toString());
-        // 忽略字段
-        assertNull(user.getSex());
+        log.info("user => {}", user);
+    }
 
-        // 只写，可读
-        assertEquals("12345", user.getPassword());
+    /**
+     * 反序列化为节点（节点操作）
+     *
+     * @throws JsonProcessingException
+     */
+    @Test
+    public void testReadTree() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree("{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"2021-01-07 06:12:25\",\"hapyyDate\":1609999945969,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"}");
 
-        assertThat(user.getExt(), Matchers.hasEntry("test", "test1"));
-        assertThat(user.getExt(), Matchers.hasEntry("test2", "test21"));
-        assertThat(user.getExt(), Matchers.hasEntry("sex", "男"));
+        log.info("user.name => {}", jsonNode.get("userName"));
 
+        JsonNode mobiles = jsonNode.get("mobiles");
+        for (JsonNode mobile : mobiles) {
+            log.info("user.mobile.no => {}", mobile.get("no"));
+        }
 
-        String str2 = objectMapper.writeValueAsString(user);
-        // password字段不可写
-        System.out.println(str2);
+        // JsonNode => Java Bean
+        User user = objectMapper.treeToValue(jsonNode, User.class);
+        log.info("user => {}", user);
 
-        log.info("");*/
+        // JavaBean => JsonNode
+        JsonNode jsonNode2 = objectMapper.valueToTree(user);
+        log.info("user jsonNode => {}", jsonNode2);
+
+    }
+
+    /**
+     * 泛型反序列化
+     */
+    @Test
+    public void testReadValueWithGeneric() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<User> users = objectMapper.readValue("[{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"nickName\":null,\"birthDate\":\"2021-01-07 06:45:44\",\"hapyyDate\":1610001944160,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"},{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"nickName\":null,\"birthDate\":\"2021-01-07 06:45:44\",\"hapyyDate\":1610001944160,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"}]",
+                new TypeReference<List<User>>() {
+                });
+        log.info("users => {}", users);
+    }
+
+    /**
+     * 反序列化Map
+     */
+    @Test
+    public void testReadValueWithMap() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        Map<String, Object> map = objectMapper.readValue("{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"2021-01-07 06:12:25\",\"hapyyDate\":1609999945969,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"}", new TypeReference<Map<String, Object>>() {
+        });
+
+        log.info("map => {}", map);
     }
 
 

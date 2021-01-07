@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.math.BigDecimal;
@@ -62,6 +63,7 @@ public class User {
     private Map<String, Object> ext = new HashMap<>();
 
     @Data
+    @NoArgsConstructor
     public static class Mobile {
 
         private Long id;
