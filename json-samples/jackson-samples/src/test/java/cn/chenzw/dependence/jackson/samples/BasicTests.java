@@ -3,6 +3,7 @@ package cn.chenzw.dependence.jackson.samples;
 import cn.chenzw.dependence.jackson.samples.domain.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.junit.runners.JUnit4;
 
 import static org.junit.Assert.*;
 
+@Slf4j
 @RunWith(JUnit4.class)
 public class BasicTests {
 
@@ -41,6 +43,10 @@ public class BasicTests {
         String str2 = objectMapper.writeValueAsString(user);
         // password字段不可写
         System.out.println(str2);
+
+        log.info("");
     }
+
+
 
 }

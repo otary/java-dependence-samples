@@ -23,11 +23,12 @@
         <module>selenium-samples</module>
         <module>netty-samples</module>
         <module>webmagic-samples</module>
-        <module>jackson-samples</module>
         <module>minio-samples</module>
         <module>ws-samples</module>
         <module>jsoup-samples</module>
         <module>poi-samples</module>
+        <module>xml-samples</module>
+        <module>json-samples</module>
     </modules>
     <packaging>pom</packaging>
 

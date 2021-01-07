@@ -6,6 +6,7 @@ import cn.chenzw.dependence.dozer.basic.domain.User;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.CustomFieldMapper;
 import org.dozer.DozerBeanMapper;
+import org.dozer.DozerConverter;
 import org.dozer.classmap.ClassMap;
 import org.dozer.fieldmap.FieldMap;
 import org.junit.Assert;
@@ -88,6 +89,14 @@ public class BasicTest {
         Staff staff = dozerBeanMapper.map(user, Staff.class);
 
         log.info("结果==> {}", staff);
+    }
+
+    /**
+     * 自定义类型映射转换器
+     */
+    @Test
+    public void testDozerConverter() {
+        // DozerConverter
     }
 
 

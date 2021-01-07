@@ -1,6 +1,7 @@
 package cn.chenzw.dependence.okhttp.samples;
 
 import cn.chenzw.dependence.okhttp.samples.interceptors.LoggingInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
@@ -11,7 +12,12 @@ import org.junit.runners.JUnit4;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @RunWith(JUnit4.class)
 public class OkHttpBasicTests {
 
@@ -71,6 +77,7 @@ public class OkHttpBasicTests {
 
     /**
      * Post请求示例
+     *
      * @throws IOException
      */
     @Test
@@ -86,7 +93,7 @@ public class OkHttpBasicTests {
                 .post(body).build();
 
         try (Response response = okHttpClient.newCall(request).execute()) {
-            System.out.println(response.body().string());
+            log.info("response => " + response.body().string());
         }
 
     }
@@ -128,6 +135,29 @@ public class OkHttpBasicTests {
     public void testWithProxy() throws IOException {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
+                .cookieJar(new CookieJar() {
+
+                    private final Map<String, List<Cookie>> cookieStore = new HashMap<>();
+
+                    @Override
+                    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+                        log.info("[url={}]保存cookie[{}]", url, cookies);
+
+                        cookieStore.put(url.host(), cookies);
+                    }
+
+                    @Override
+                    public List<Cookie> loadForRequest(HttpUrl url) {
+                        List<Cookie> cookies = cookieStore.get(url.host());
+
+                        if (cookies == null) {
+                            return Collections.EMPTY_LIST;
+                        }
+
+                        log.info("[url={}]取出cookie[{}]", url, cookies);
+                        return cookies;
+                    }
+                })
                 // 设置代理地址
                 .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("192.168.13.19", 7777)))
                 .proxyAuthenticator(new Authenticator() {
@@ -146,8 +176,17 @@ public class OkHttpBasicTests {
         Request request = new Request.Builder().url("https://www.baidu.com").build();
         Response response = okHttpClient.newCall(request).execute();
         if (response.isSuccessful()) {
-            System.out.println(response.body().string());
+            log.info("response => " + response.body().string());
+        }
+
+
+        // 多次请求会有cookie
+        Request request2 = new Request.Builder().url("https://blog.csdn.net/qq_36982160/article/details/82351373").build();
+        Response response2 = okHttpClient.newCall(request).execute();
+        if (response.isSuccessful()) {
+            log.info("response => " + response.body().string());
         }
     }
+
 
 }
