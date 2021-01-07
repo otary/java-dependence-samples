@@ -1,12 +1,14 @@
 package cn.chenzw.dependence.jackson.samples;
 
 import cn.chenzw.dependence.jackson.samples.domain.entity.User;
+import cn.chenzw.dependence.jackson.samples.module.CustomSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -174,6 +176,21 @@ public class BasicTests {
         });
 
         log.info("map => {}", map);
+    }
+
+    @Test
+    public void testCustomSerializer() throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        SimpleModule module = new SimpleModule("myModule");
+        module.addSerializer(new CustomSerializer(User.class));
+        objectMapper.registerModule(module);
+
+        String json = objectMapper.writeValueAsString(user);
+
+        log.info("result => {}", json);
+
     }
 
 
