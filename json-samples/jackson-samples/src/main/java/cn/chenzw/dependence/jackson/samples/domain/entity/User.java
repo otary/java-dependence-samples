@@ -7,8 +7,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,10 +18,42 @@ import java.util.Map;
 public class User {
 
     private Long id;
+
+    /**
+     * 字段重命名
+     */
+    @JsonProperty("userName")
     private String name;
 
+    private List<Mobile> mobiles;
+
+    /**
+     * 只写，不读
+     */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+
+    /**
+     * 忽略字段
+     */
+    @JsonIgnore
+    private String remark;
+
+    private String nickName;
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date birth;
+    private Date birthDate;
+
+    /**
+     * 不转换格式（全局转换）
+     */
+    private Date hapyyDate;
+
+
+    private BigDecimal money;
+
+
+    private Double height;
 
     /**
      * 未映射的属性值放到此Map上
@@ -27,16 +61,17 @@ public class User {
     @JsonAnySetter
     private Map<String, Object> ext = new HashMap<>();
 
-    /**
-     * 字段值不映射
-     */
-    @JsonIgnore
-    private String sex;
+    @Data
+    public static class Mobile {
 
-    /**
-     * 只写，不读
-     */
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String password;
+        private Long id;
+
+        private String no;
+
+        public Mobile(Long id, String no) {
+            this.id = id;
+            this.no = no;
+        }
+    }
 
 }

@@ -1,6 +1,5 @@
 package cn.chenzw.dependence.gson.domain;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Since;
 import com.google.gson.annotations.Until;
@@ -8,7 +7,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class User {
@@ -46,6 +47,11 @@ public class User {
      */
     @Until(1.5)
     private Double height;
+
+    /**
+     * Map字段
+     */
+    private Map<String, Object> ext = new HashMap<>();
 
     @Data
     public static class Mobile {

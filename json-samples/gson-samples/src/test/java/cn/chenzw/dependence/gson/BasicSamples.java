@@ -43,6 +43,7 @@ public class BasicSamples {
      */
     @Test
     public void testToJsonDefault() {
+        // 默认不输出null值字段
         Gson gson = new GsonBuilder()
                 .create();
 
@@ -108,7 +109,7 @@ public class BasicSamples {
 
         String json = gson.toJson(user);
 
-        // Assert.assertEquals("{\"id\":1,\"name\":\"张三\",\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birth\":\"2021-01-06 20:06:10\"}", json);
+        // Assert.assertEquals("{\"id\":1,\"name\":\"张三\",\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"2021-01-06 20:06:10\"}", json);
 
         log.info("result => {}", json);
     }
@@ -119,9 +120,9 @@ public class BasicSamples {
     @Test
     public void testFieldNamingStrategy() {
         Gson gson = new GsonBuilder()
-                // .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)  // 小写 + 破折号（eg.birth-date）
+                // .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)  // 小写 + 破折号（eg.birthDate-date）
                 .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)  // 小写 + 下划线（eg.birth_date）
-                // .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS) // 小写 + 点（eg. birth.date）
+                // .setFieldNamingStrategy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS) // 小写 + 点（eg. birthDate.date）
                 // .setFieldNamingStrategy(FieldNamingPolicy.UPPER_CAMEL_CASE)   // 大写驼峰（eg. BirthDate）
                 // .setFieldNamingStrategy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES)  // 大写驼峰 + 空格（eg. Birth Date）
                 // .setFieldNamingStrategy(FieldNamingPolicy.IDENTITY)  // 默认，原样输出
@@ -257,6 +258,9 @@ public class BasicSamples {
         log.info("users => {}", Arrays.toString(users));
     }
 
+    /**
+     * 反序列化为Map
+     */
     @Test
     public void testFromJsonWithMap() {
         Gson gson = new GsonBuilder()
@@ -272,6 +276,18 @@ public class BasicSamples {
         log.info("userGenericMap => {}", userGenericMap);
     }
 
+    /**
+     * 反序列化Map字段
+     */
+    @Test
+    public void testFromJsonWithMapField() {
+        Gson gson = new GsonBuilder()
+                .create();
+
+        User user = gson.fromJson("{\"id\":1,\"userName\":\"张三\",\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"Jan 7, 2021 10:47:41 AM\",\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{\"a\":\"1\",\"b\":\"2\"}}", User.class);
+
+        log.info("user => {}", user);
+    }
 
     /**
      * 大数据处理
