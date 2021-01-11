@@ -51,6 +51,7 @@ public class GuavaCacheTests {
      */
     @Test
     public void testMaximumSize() {
+
         // 指定最大容量
         Cache<Integer, String> cache = CacheBuilder.newBuilder().maximumSize(2).build();
         cache.put(1, "a");
