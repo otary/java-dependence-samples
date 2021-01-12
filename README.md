@@ -14,7 +14,7 @@ java依赖示例
 - [http-samples](./http-samples): http请求示例
   - [rest-template-samples](./http-samples/rest-template-samples): RestTemplate请求示例
   - [okhttp-samples](./http-samples/okhttp-samples): OkHttp请求示例
+  - [httpclient-samples](./http-samples/okhttp-samples): OkHttp请求示例
 - [commons-net-samples](./commons-net-samples)
 - [test-samples](./test-samples): 测试示例
   - [junit-samples](./test-samples/junit-samples): Hamcrest示例
-  

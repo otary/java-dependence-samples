@@ -29,6 +29,7 @@
         <module>poi-samples</module>
         <module>xml-samples</module>
         <module>json-samples</module>
+        <module>id-generator-samples</module>
     </modules>
     <packaging>pom</packaging>
 
