@@ -30,6 +30,7 @@
         <module>xml-samples</module>
         <module>json-samples</module>
         <module>id-generator-samples</module>
+        <module>pdf-samples</module>
     </modules>
     <packaging>pom</packaging>
 
