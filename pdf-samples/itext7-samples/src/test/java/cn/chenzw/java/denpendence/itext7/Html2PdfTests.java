@@ -2,6 +2,9 @@ package cn.chenzw.java.denpendence.itext7;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.layout.font.FontProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -37,8 +40,16 @@ public class Html2PdfTests {
 
     @Test
     public void testHtml2Pdf() throws IOException {
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("html/input.html");
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("html/index.html");
+        ConverterProperties converterProperties = new ConverterProperties();
 
-        HtmlConverter.convertToPdf(is, new FileOutputStream("result.pdf"), new ConverterProperties());
+        FontProvider fontProvider = new FontProvider();
+
+        PdfFont sysFont = PdfFontFactory.createFont("STSongStd-Light", "UniGB-UCS2-H", false);
+        fontProvider.addFont(sysFont.getFontProgram(), "UniGB-UCS2-H");
+
+        converterProperties.setFontProvider(fontProvider);
+
+        HtmlConverter.convertToPdf(is, new FileOutputStream("result.pdf"), converterProperties);
     }
 }
