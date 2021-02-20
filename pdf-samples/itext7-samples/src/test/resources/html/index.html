@@ -8,9 +8,9 @@
         .czw-table {
             width: 100%;
             border-collapse: collapse;
-            table-layout:fixed;
-            word-wrap:break-word;
-            word-break:break-all
+            table-layout: fixed;
+            word-wrap: break-word;
+            word-break: break-all
         }
 
         .czw-table-row {
@@ -31,9 +31,74 @@
         .czw-table-col__title {
 
         }
+
+
+        .box {
+            display: flex;
+            flex-flow: column wrap;
+            height: 100vh;
+        }
+
+        .item {
+            margin: 10px;
+            width: calc(100% / 3 - 20px);
+        }
+
+        .item img {
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
+
+<!--${formFields?size}
+<#list formFields>
+<#items as formField>
+${formField.label!}
+${formField.value!}
+</#items>
+</#list>-->
+
+<div class="box" style=" display: flex; flex-flow:column wrap;  height: 100vh;">
+    <div class="item" style=" margin: 10px;  width: calc(100%/3 - 20px);">
+        sxxx
+    </div>
+    <div class="item">
+        sdfsdfsdf
+    </div>
+    <div class="item">
+        sfsdfsdfsdf
+    </div>
+    <div class="item">
+        sdfsdf
+    </div>
+    <div class="item">
+        2323
+    </div>
+    <div class="item">
+        dfgdfg
+    </div>
+    <div class="item">
+        sdfsf
+    </div>
+    <div class="item">
+        sdfsf
+    </div>
+    <div class="item">
+        sdfsdf
+    </div>
+    <div class="item">
+        iioioiooio
+    </div>
+    <div class="item">
+        234234234234
+    </div>
+    <div class="item">
+        234234
+    </div>
+</div>
+
 <table class="czw-table">
     <tr class="czw-table-row">
         <td class="czw-table-col czw-table-col__title">
@@ -49,20 +114,569 @@
             平台告警
         </td>
     </tr>
-    <tr class="czw-table-row">
+    <tr class="czw-table-row" rowspan="3">
         <td class="czw-table-col czw-table-col__title">
             操作系统
         </td>
-        <td class="czw-table-col czw-table-col__value">
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
             window 10;iOS 10;iOS 12
         </td>
         <td class="czw-table-col czw-table-col__title">
-            自多选下拉
+            告警分类
         </td>
         <td class="czw-table-col czw-table-col__value">
-            自多选下拉0;自多选下拉3;自多选下拉1
+            平台告警
         </td>
     </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+    <tr class="czw-table-row" rowspan="3">
+        <td class="czw-table-col czw-table-col__title">
+            操作系统
+        </td>
+        <td class="czw-table-col czw-table-col__value" style="column-span: 3">
+            window 10;iOS 10;iOS 12
+        </td>
+        <td class="czw-table-col czw-table-col__title">
+            告警分类
+        </td>
+        <td class="czw-table-col czw-table-col__value">
+            平台告警
+        </td>
+    </tr>
+
+
 </table>
+
 </body>
 </html>

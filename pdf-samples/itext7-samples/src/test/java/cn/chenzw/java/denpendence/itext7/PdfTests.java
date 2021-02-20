@@ -36,4 +36,9 @@ public class PdfTests {
         //Close document
         document.close();
     }
+
+    @Test
+    public void testTable() {
+
+    }
 }

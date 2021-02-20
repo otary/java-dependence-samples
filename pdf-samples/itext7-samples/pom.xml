@@ -16,7 +16,7 @@
     </properties>
     <dependencies>
         <!-- itext7 -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>kernel</artifactId>
             <version>${itext.version}</version>
@@ -55,12 +55,6 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.18</version>
-        </dependency>-->
-
-        <dependency>
-            <groupId>com.itextpdf</groupId>
-            <artifactId>font-asian</artifactId>
-            <version>${itext.version}</version>
         </dependency>
         <!--/itext7-->
 
