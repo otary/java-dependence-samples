@@ -15,8 +15,10 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.kernel.pdf.extgstate.PdfExtGState;
 import com.itextpdf.layout.Canvas;
+import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.font.FontProvider;
+import com.itextpdf.layout.font.FontSet;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.VerticalAlignment;
 import org.junit.Test;
@@ -104,9 +106,22 @@ public class Html2PdfTests {
                         .showTextAligned(
                                 new Paragraph("测试测试2"), 100, 100,
                                 pdfDoc.getPageNumber(page), TextAlignment.CENTER, VerticalAlignment.MIDDLE, 45);
+
+                PdfCanvas canvas2 = new PdfCanvas(page);
+                PdfExtGState gs2 = new PdfExtGState();
+                gs2.setFillOpacity(0.3f); // 水印透明度
+                canvas2.setExtGState(gs2);
+                new Canvas(canvas2, page.getPageSize())
+                        .setFontColor(ColorConstants.LIGHT_GRAY) //字体颜色
+                        .setFontSize(80) //字体大小
+                        .setFont(font)
+                        .showTextAligned(
+                                new Paragraph("xxxxxx"), 200, 200,
+                                pdfDoc.getPageNumber(page), TextAlignment.CENTER, VerticalAlignment.MIDDLE, 45);
             }
         });
         pdfDoc.close();
-
     }
+
+
 }
