@@ -107,6 +107,7 @@ public class Html2PdfTests {
                                 new Paragraph("测试测试2"), 100, 100,
                                 pdfDoc.getPageNumber(page), TextAlignment.CENTER, VerticalAlignment.MIDDLE, 45);
 
+                // 多个水印
                 PdfCanvas canvas2 = new PdfCanvas(page);
                 PdfExtGState gs2 = new PdfExtGState();
                 gs2.setFillOpacity(0.3f); // 水印透明度
@@ -120,6 +121,7 @@ public class Html2PdfTests {
                                 pdfDoc.getPageNumber(page), TextAlignment.CENTER, VerticalAlignment.MIDDLE, 45);
             }
         });
+        // 必须关闭才会触发END_PAGE事件
         pdfDoc.close();
     }
 

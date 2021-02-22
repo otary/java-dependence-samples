@@ -31,6 +31,7 @@
         <module>json-samples</module>
         <module>id-generator-samples</module>
         <module>pdf-samples</module>
+        <module>easy-excel-samples</module>
     </modules>
     <packaging>pom</packaging>
 
