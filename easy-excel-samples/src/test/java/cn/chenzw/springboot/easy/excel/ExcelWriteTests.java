@@ -82,4 +82,26 @@ public class ExcelWriteTests {
             excelWriter.finish();
         }
     }
+
+    @Test
+    public void test() throws FileNotFoundException {
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < 5000; i++) {
+            User user = new User();
+            user.setName("张三" + i);
+            user.setAge(i);
+            user.setBirth(Calendar.getInstance().getTime());
+            users.add(user);
+        }
+
+        WriteSheet writeSheet = new ExcelWriterBuilder().sheet(0, "默认").head(User.class).build();
+        ExcelWriter excelWriter = EasyExcel.write(new FileOutputStream("target/result.xlsx")).build();
+        excelWriter.write(users, writeSheet);
+
+        if (excelWriter != null) {
+            excelWriter.finish();
+        }
+    }
+
+
 }
