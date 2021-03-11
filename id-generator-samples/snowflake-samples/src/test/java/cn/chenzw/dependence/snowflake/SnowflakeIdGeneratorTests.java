@@ -1,4 +1,4 @@
-package cn.chenzw.dependence.id.generator;
+package cn.chenzw.dependence.snowflake;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Slf4j
 @RunWith(JUnit4.class)
-public class IdGeneratorTests {
+public class SnowflakeIdGeneratorTests {
 
 
     /**

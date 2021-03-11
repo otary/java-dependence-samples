@@ -1,4 +1,4 @@
-package cn.chenzw.dependence.id.generator;
+package cn.chenzw.dependence.snowflake;
 
 import java.io.Serializable;
 import java.util.Date;
