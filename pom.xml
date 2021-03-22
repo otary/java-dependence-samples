@@ -32,6 +32,7 @@
         <module>id-generator-samples</module>
         <module>pdf-samples</module>
         <module>easy-excel-samples</module>
+        <module>docx4j-samples</module>
     </modules>
     <packaging>pom</packaging>
 
