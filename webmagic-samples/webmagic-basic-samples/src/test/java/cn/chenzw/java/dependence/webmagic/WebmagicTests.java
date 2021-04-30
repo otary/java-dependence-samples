@@ -1,6 +1,8 @@
 package cn.chenzw.java.dependence.webmagic;
 
+import cn.chenzw.java.dependence.webmagic.pipeline.MyConsolePipeline;
 import cn.chenzw.java.dependence.webmagic.processor.BaiduPageProcessor;
+import cn.chenzw.java.dependence.webmagic.processor.BaiduPageProcessor2;
 import cn.chenzw.java.dependence.webmagic.support.ThreadPoolInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -56,6 +58,20 @@ public class WebmagicTests {
             Thread.sleep(3000);
         }
 
+    }
+
+
+    @Test
+    public void test2() {
+        Request request = new Request();
+        request.setUrl("http://www.baidu.com");
+        request.setMethod(HttpConstant.Method.GET);
+
+        Spider.create(new BaiduPageProcessor2())
+                .thread(20)
+                .addRequest(request)
+                .addPipeline(new MyConsolePipeline())
+                .run(); // 同步执行
     }
 
 }
