@@ -1,7 +1,10 @@
 package cn.chenzw.dependence.jackson.samples;
 
+import cn.chenzw.dependence.jackson.samples.domain.entity.Address;
+import cn.chenzw.dependence.jackson.samples.domain.entity.Employee;
 import cn.chenzw.dependence.jackson.samples.domain.entity.User;
 import cn.chenzw.dependence.jackson.samples.module.CustomSerializer;
+import cn.chenzw.dependence.jackson.samples.module.User2JacksonModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -191,6 +194,25 @@ public class BasicTests {
 
         log.info("result => {}", json);
 
+    }
+
+    @Test
+    public void testUser2JacksonModule() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        User2JacksonModule user2JacksonModule = new User2JacksonModule();
+        user2JacksonModule.registerModule(objectMapper);
+
+        Employee employee = new Employee();
+        employee.setName("张三");
+        employee.setAge(50);
+        employee.setDesignation("总裁");
+        employee.setSalary(10000000000d);
+        employee.setAddress(Arrays.asList(
+                new Address("北京", "北京", "", "xx小区2栋2001")
+        ));
+
+        String result = objectMapper.writeValueAsString(employee);
+        log.info("result => {}", result);
     }
 
 

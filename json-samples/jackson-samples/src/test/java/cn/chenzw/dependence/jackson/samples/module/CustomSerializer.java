@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
 import java.io.IOException;
 
+/**
+ * 通常用于某种字段类型的序列化
+ */
 public class CustomSerializer extends StdSerializer<User> {
 
     public CustomSerializer(Class<User> clazz) {
@@ -15,6 +18,13 @@ public class CustomSerializer extends StdSerializer<User> {
 
     @Override
     public void serialize(User user, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        jsonGenerator.writeStartObject();
+
+        jsonGenerator.writeNumberField("id", user.getId());
+        jsonGenerator.writeStringField("name", user.getName());
+        jsonGenerator.writeStringField("nickName", user.getNickName());
+
+        jsonGenerator.writeEndObject();
 
     }
 }
