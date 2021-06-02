@@ -18,3 +18,5 @@ java依赖示例
 - [commons-net-samples](./commons-net-samples)
 - [test-samples](./test-samples): 测试示例
   - [junit-samples](./test-samples/junit-samples): Hamcrest示例
+
+- [dns-java-samples](./dns-java-samples): IP => DNS

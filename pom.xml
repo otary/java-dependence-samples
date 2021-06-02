@@ -33,6 +33,7 @@
         <module>pdf-samples</module>
         <module>easy-excel-samples</module>
         <module>docx4j-samples</module>
+        <module>dns-java-samples</module>
     </modules>
     <packaging>pom</packaging>
 
