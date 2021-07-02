@@ -43,9 +43,10 @@ public class WebmagicTests {
             request.setMethod(HttpConstant.Method.GET);
 
             Spider.create(new BaiduPageProcessor())
-                            .thread(20)
+                            .thread(pageProcessorThreadPool, 20)
                             .addRequest(request)
                             .addPipeline(new ConsolePipeline())
+                           // .setExitWhenComplete(false)
                             // .setDownloader(new FixSSLHttpClientDownloader(session))
                             .run(); // 同步执行
                             // .runAsync(); // 异步执行
