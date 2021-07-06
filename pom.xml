@@ -35,6 +35,7 @@
         <module>docx4j-samples</module>
         <module>dns-java-samples</module>
         <module>zxing</module>
+        <module>elasticsearch-sql-samples</module>
     </modules>
     <packaging>pom</packaging>
 
