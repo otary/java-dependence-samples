@@ -36,6 +36,7 @@
         <module>dns-java-samples</module>
         <module>zxing</module>
         <module>elasticsearch-sql-samples</module>
+        <module>anltr4-samples</module>
     </modules>
     <packaging>pom</packaging>
 
