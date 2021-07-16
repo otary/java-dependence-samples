@@ -1,17 +1,24 @@
 package cn.chenzw.springboot.easy.excel;
 
+import cn.chenzw.springboot.easy.excel.domain.entity.ScoreSheet1Listener;
+import cn.chenzw.springboot.easy.excel.domain.entity.ScoreSheet1Template;
 import cn.chenzw.springboot.easy.excel.domain.entity.User;
 import cn.chenzw.springboot.easy.excel.domain.entity.User2;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.enums.WriteDirectionEnum;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.excel.write.metadata.fill.FillConfig;
+import com.alibaba.excel.write.metadata.fill.FillWrapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -101,6 +108,55 @@ public class ExcelWriteTests {
         if (excelWriter != null) {
             excelWriter.finish();
         }
+    }
+
+
+    /**
+     * 根据模版导出
+     * @throws FileNotFoundException
+     */
+    @Test
+    public void testExportByTemplate() throws FileNotFoundException {
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("data/complex2.xlsx");
+
+        List<User> users = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            User user = new User();
+            user.setName("张三");
+            user.setAge(i);
+            users.add(user);
+        }
+
+        // 多个sheet页
+        FileOutputStream fos = new FileOutputStream(new File("result.xlsx"));
+        WriteSheet writeSheet1 = EasyExcel.writerSheet(0).build();
+        WriteSheet writeSheet2 = EasyExcel.writerSheet(1).build();
+        ExcelWriter excelWriter = EasyExcel.write(fos).withTemplate(is).build();
+        excelWriter.fill(users, writeSheet1);
+        excelWriter.fill(users, writeSheet2);
+
+        excelWriter.finish();
+    }
+
+    @Test
+    public void test3() throws FileNotFoundException {
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("data/template_var_inp.xlsx");
+
+        List<ScoreSheet1Template> scoreSheet1Templates = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            ScoreSheet1Template scoreSheet1Template = new ScoreSheet1Template();
+            scoreSheet1Template.setKpiScore1("2.4");
+            scoreSheet1Template.setKpiScore2("3.4");
+            scoreSheet1Template.setRegionName("四十");
+            scoreSheet1Templates.add(scoreSheet1Template);
+        }
+
+        FileOutputStream fos = new FileOutputStream(new File("result.xlsx"));
+        WriteSheet writeSheet1 = EasyExcel.writerSheet(0).build();
+        ExcelWriter excelWriter = EasyExcel.write(fos).withTemplate(is).build();
+        excelWriter.fill(scoreSheet1Templates, writeSheet1);
+
+        excelWriter.finish();
     }
 
 
