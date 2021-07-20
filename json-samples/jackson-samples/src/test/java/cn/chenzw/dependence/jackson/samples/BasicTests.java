@@ -19,10 +19,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Slf4j
@@ -140,6 +137,7 @@ public class BasicTests {
         JsonNode jsonNode = objectMapper.readTree("{\"id\":1,\"mobiles\":[{\"id\":1,\"no\":\"12345678\"},{\"id\":2,\"no\":\"87654321\"}],\"birthDate\":\"2021-01-07 06:12:25\",\"hapyyDate\":1609999945969,\"money\":100.18999999999999772626324556767940521240234375,\"height\":1.8,\"ext\":{},\"userName\":\"张三\"}");
 
         log.info("user.name => {}", jsonNode.get("userName"));
+        log.info("nodeType => {}", jsonNode.getNodeType());
 
         JsonNode mobiles = jsonNode.get("mobiles");
         for (JsonNode mobile : mobiles) {
@@ -153,6 +151,15 @@ public class BasicTests {
         // JavaBean => JsonNode
         JsonNode jsonNode2 = objectMapper.valueToTree(user);
         log.info("user jsonNode => {}", jsonNode2);
+
+        // 遍历节点
+        Iterator<String> keys = jsonNode.fieldNames();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            List<String> values = jsonNode.findValuesAsText(key);
+
+            log.info("{} => {}", key, values);
+        }
 
     }
 
@@ -215,5 +222,9 @@ public class BasicTests {
         log.info("result => {}", result);
     }
 
+
+    public void test() {
+
+    }
 
 }
