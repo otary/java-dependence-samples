@@ -18,6 +18,7 @@ public class MultiLevelPageProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
+        // 根据不同页面，进行不同的处理
         if (page.getUrl().toString().equals("https://www.kuaikanmanhua.com/tag/0")) {
             processListPage(page);
         } else if (page.getUrl().regex("https://www.kuaikanmanhua.com/web/topic/.*") != null) {
@@ -34,21 +35,13 @@ public class MultiLevelPageProcessor implements PageProcessor {
     }
 
     private void processChapterListPage(Page page) {
-
-        System.out.println(page.getHtml());
-
         // 漫画名称
         String title = page.getHtml().$(".TopicHeader>.right>.title", "text").get();
         String nickName = page.getHtml().$(".TopicHeader>.right>.nickname", "text").get();
         String detail =  page.getHtml().$(".TopicHeader>.right .detailsBox>p", "text").get();
-        String imageCover = page.getHtml().$(".TopicHeader>.left>.imgCover", "data-src").get();
-
-        System.out.println(imageCover);
 
         List<Selectable> nodes = page.getHtml().$(".TopicList .TopicItem").nodes();
         for (Selectable node : nodes) {
-
-
             // 章节标题
             String chapterTitle = node.$(".title>a>span", "text").get();
         }
