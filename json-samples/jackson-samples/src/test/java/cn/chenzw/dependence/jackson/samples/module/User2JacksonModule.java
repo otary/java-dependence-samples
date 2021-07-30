@@ -34,8 +34,6 @@ public class User2JacksonModule extends SimpleModule {
          */
         context.setMixInAnnotations(Employee.class, EmploySerializer.class);
 
-
-
     }
 
     @JsonAutoDetect

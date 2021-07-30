@@ -130,7 +130,7 @@ public class Yn887PageProcessor implements PageProcessor {
         Spider.create(new Yn887PageProcessor())
                 .addPipeline(new ConsolePipeline())
                 // .addUrl("http://www.yn887.com/wanjie/")
-                .addUrl("http://www.yn887.com/ynmh/29947/627622.html?p=4")
+               // .addUrl("http://www.yn887.com/ynmh/29947/627622.html?p=4")
                 .run();
     }
 }

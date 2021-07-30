@@ -25,6 +25,5 @@ public class CustomSerializer extends StdSerializer<User> {
         jsonGenerator.writeStringField("nickName", user.getNickName());
 
         jsonGenerator.writeEndObject();
-
     }
 }

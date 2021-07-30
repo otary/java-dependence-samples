@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.node.JsonNodeType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
@@ -159,6 +160,21 @@ public class BasicTests {
             List<String> values = jsonNode.findValuesAsText(key);
 
             log.info("{} => {}", key, values);
+
+            JsonNode valueNode = jsonNode.findValue(key);
+            // 数组节点
+            if (valueNode.getNodeType() == JsonNodeType.ARRAY) {
+                // 遍历元素
+                Iterator<JsonNode> elements = valueNode.elements();
+
+            } else if (valueNode.getNodeType() == JsonNodeType.OBJECT) {
+                // 遍历对象
+
+
+            } else if (valueNode.getNodeType() == JsonNodeType.BOOLEAN) {
+                //
+
+            }
         }
 
     }
