@@ -182,9 +182,9 @@ public class OkHttpBasicTests {
 
         // 多次请求会有cookie
         Request request2 = new Request.Builder().url("https://blog.csdn.net/qq_36982160/article/details/82351373").build();
-        Response response2 = okHttpClient.newCall(request).execute();
-        if (response.isSuccessful()) {
-            log.info("response => " + response.body().string());
+        Response response2 = okHttpClient.newCall(request2).execute();
+        if (response2.isSuccessful()) {
+            log.info("response => " + response2.body().string());
         }
     }
 
