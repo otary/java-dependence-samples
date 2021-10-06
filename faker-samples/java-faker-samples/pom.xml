@@ -3,19 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>java-denpendence-samples</artifactId>
+        <artifactId>faker-samples</artifactId>
         <groupId>cn.chenzw.denpendence</groupId>
         <version>1.0.0.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>elasticsearch-sql-samples</artifactId>
+    <artifactId>java-faker-samples</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>io.github.iamazy.elasticsearch.dsl</groupId>
-            <artifactId>elasticsearch-sql-all</artifactId>
-            <version>7.15.0</version>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 

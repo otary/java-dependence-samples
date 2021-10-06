@@ -37,6 +37,7 @@
         <module>zxing</module>
         <module>elasticsearch-sql-samples</module>
         <module>anltr4-samples</module>
+        <module>faker-samples</module>
     </modules>
     <packaging>pom</packaging>
 
