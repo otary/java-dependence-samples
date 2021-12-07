@@ -1,16 +1,12 @@
 package cn.chenzw.springboot.easy.excel;
 
-import cn.chenzw.springboot.easy.excel.domain.entity.ScoreSheet1Listener;
 import cn.chenzw.springboot.easy.excel.domain.entity.ScoreSheet1Template;
 import cn.chenzw.springboot.easy.excel.domain.entity.User;
 import cn.chenzw.springboot.easy.excel.domain.entity.User2;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.enums.WriteDirectionEnum;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.metadata.WriteSheet;
-import com.alibaba.excel.write.metadata.fill.FillConfig;
-import com.alibaba.excel.write.metadata.fill.FillWrapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -19,10 +15,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RunWith(JUnit4.class)
 public class ExcelWriteTests {
@@ -53,6 +47,10 @@ public class ExcelWriteTests {
         return users;
     }
 
+    /**
+     * 基础写入
+     * @throws FileNotFoundException
+     */
     @Test
     public void testWrite() throws FileNotFoundException {
         List<User> users = createData();
@@ -83,7 +81,24 @@ public class ExcelWriteTests {
         );
         WriteSheet writeSheet = new ExcelWriterBuilder().sheet(0, "默认").head(heads).build();
         ExcelWriter excelWriter = EasyExcel.write(new FileOutputStream("target/result.xlsx")).build();
-        excelWriter.write(users, writeSheet);
+
+
+        List<Map<String, String>> list = new ArrayList<>();
+        list.add(new HashMap<String, String>(){
+            {
+                put("aaa", "tttt");
+                put("xxx", "www");
+            }
+        });
+
+        List<List<String>> collect = list.stream().map((map) -> {
+            return map.entrySet().stream().map(entry -> {
+                return entry.getValue();
+            }).collect(Collectors.toList());
+        }).collect(Collectors.toList());
+
+
+        excelWriter.write(collect, writeSheet);
 
         if (excelWriter != null) {
             excelWriter.finish();
