@@ -38,6 +38,7 @@
         <module>elasticsearch-sql-samples</module>
         <module>anltr4-samples</module>
         <module>faker-samples</module>
+        <module>sql-parser</module>
     </modules>
     <packaging>pom</packaging>
 
