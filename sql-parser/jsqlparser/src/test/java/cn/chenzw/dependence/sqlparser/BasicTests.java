@@ -6,9 +6,12 @@ import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Table;
 import net.sf.jsqlparser.statement.Statements;
 import net.sf.jsqlparser.statement.create.table.CreateTable;
+import net.sf.jsqlparser.statement.create.table.Index;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import java.util.List;
 
 @Slf4j
 @RunWith(JUnit4.class)
@@ -41,6 +44,21 @@ public class BasicTests {
                 );
             });
 
+            // 索引、主键信息
+            List<Index> indexes = ct.getIndexes();
+            for (Index index : indexes) {
+                log.info("indexName => {}, indexType => {}, indexColumnsNames => {}, indexSpec => {}", index.getName(), index.getType(), index.getColumnsNames(), index.getIndexSpec());
+            }
+
+            List<String> createOptionsStrings = ct.getCreateOptionsStrings();
+            log.info("createOptionsStrings => {}", createOptionsStrings);
+
+            // 表备注等信息
+            List<?> tableOptionsStrings = ct.getTableOptionsStrings();
+            for (Object tableOptionsString : tableOptionsStrings) {
+                log.info("tableOptionsString => {}", tableOptionsString);
+            }
+
             Table table = ct.getTable();
             log.info("DatabaseName => {}, FullyQualifiedName => {}, Server => {}",
                     table.getDatabase().getDatabaseName(),
@@ -57,12 +75,15 @@ public class BasicTests {
                     table.getIndexHint()
             );
 
+
             // 表名别名
             if (table.getAlias() != null) {
                 log.info("AliasName => {}, AliasIsUseAs => {}",
                         table.getAlias().getName(),
                         table.getAlias().isUseAs());
             }
+
+
         });
     }
 }

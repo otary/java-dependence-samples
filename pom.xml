@@ -40,6 +40,7 @@
         <module>faker-samples</module>
         <module>jsch-samples</module>
         <module>sql-parser</module>
+        <module>uasparser-samples</module>
     </modules>
     <packaging>pom</packaging>
 
