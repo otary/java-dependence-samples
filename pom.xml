@@ -41,6 +41,9 @@
         <module>jsch-samples</module>
         <module>sql-parser</module>
         <module>uasparser-samples</module>
+        <module>freemarker-samples</module>
+        <module>lombok-samples</module>
+        <module>thumbnailator-samples</module>
     </modules>
     <packaging>pom</packaging>
 
