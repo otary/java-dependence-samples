@@ -20,3 +20,6 @@ java依赖示例
   - [junit-samples](./test-samples/junit-samples): Hamcrest示例
 
 - [dns-java-samples](./dns-java-samples): IP => DNS
+
+- [zxing](./zxing)：二维码处理
+

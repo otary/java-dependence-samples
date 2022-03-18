@@ -44,6 +44,7 @@
         <module>freemarker-samples</module>
         <module>lombok-samples</module>
         <module>thumbnailator-samples</module>
+        <module>tokenizer-samples</module>
     </modules>
     <packaging>pom</packaging>
 
