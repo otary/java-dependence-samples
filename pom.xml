@@ -45,6 +45,8 @@
         <module>lombok-samples</module>
         <module>thumbnailator-samples</module>
         <module>tokenizer-samples</module>
+        <module>alipay-samples</module>
+        <module>github-api-samples</module>
     </modules>
     <packaging>pom</packaging>
 

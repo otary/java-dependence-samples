@@ -4,6 +4,7 @@ import io.minio.*;
 
 import io.minio.errors.*;
 import io.minio.http.Method;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import java.io.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+@Slf4j
 @RunWith(JUnit4.class)
 public class MinioTests {
 
@@ -23,10 +25,9 @@ public class MinioTests {
 
     @BeforeClass
     public static void beforeClass() {
-        // @TODO
         minioClient = MinioClient.builder()
                 .endpoint("http://119.45.252.139:9020")
-                .credentials("otary", "otary_321")
+                .credentials("otary", "otary") // @TODO _321
                 .build();
     }
 
@@ -102,7 +103,17 @@ public class MinioTests {
                 .build();
         String presignedObjectUrl = minioClient.getPresignedObjectUrl(getPresignedObjectUrlArgs);
 
-        System.out.println(presignedObjectUrl);
+        log.info(" => {}", presignedObjectUrl);
     }
 
+    /**
+     * 获取文件信息
+     */
+    @Test
+    public void testStatObject() throws IOException, InvalidKeyException, InvalidResponseException, InsufficientDataException, NoSuchAlgorithmException, ServerException, InternalException, XmlParserException, InvalidBucketNameException, ErrorResponseException {
+        StatObjectArgs statObjectArgs = StatObjectArgs.builder().bucket("gif").object("favicon_fox.png").build();
+        ObjectStat objectStat = minioClient.statObject(statObjectArgs);
+
+        log.info(" => {}", objectStat);  // {bucket='gif', name='favicon_fox.png', contentType='image/png', createdTime=2021-06-01T12:04:31Z, length=4317, etag='1c2272ddee396513150eb7735a3008c9'}
+    }
 }
