@@ -8,6 +8,7 @@ import cn.chenzw.dependence.jackson.samples.module.User2JacksonModule;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -106,6 +107,9 @@ public class BasicTests {
                 //  JsonInclude.Include.ALWAYS   // 全输出
                 // JsonInclude.Include.NON_ABSENT
         );
+
+        // 配置
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         String json = objectMapper.writeValueAsString(user);
 

@@ -28,7 +28,6 @@ public class OkHttpBasicTests {
      */
     @Test
     public void testBasicSync() throws IOException {
-
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().url("http://www.baidu.com").build();
         Response response = okHttpClient.newCall(request).execute();  // 同步请求
@@ -55,7 +54,7 @@ public class OkHttpBasicTests {
         // 异步请求
         okHttpClient.newCall(request).enqueue(new Callback() {
 
-            @Override
+            @Overrid
             public void onFailure(Call call, IOException e) {
                 System.out.println("异常: " + e.getMessage());
             }
@@ -76,7 +75,7 @@ public class OkHttpBasicTests {
     }
 
     /**
-     * Post请求示例
+     * Post请求示例（FormBody）
      *
      * @throws IOException
      */
@@ -98,6 +97,26 @@ public class OkHttpBasicTests {
 
     }
 
+    /**
+     * Post示例（JsonBody）
+     */
+    @Test
+    public void testPostJson() throws IOException {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().addInterceptor(new LoggingInterceptor()).build();
+
+        RequestBody body = RequestBody.create(
+                MediaType.parse("application/json;charset=utf-8"),
+                "{\"bookid\": \"xxx\", \"bookName\": \"yyy\"}"
+        );
+
+        Request request = new Request.Builder()
+                .url("http://139.199.89.89/api/v1/books")
+                .post(body).build();
+
+        try (Response response = okHttpClient.newCall(request).execute()) {
+            log.info("response => " + response.body().string());
+        }
+    }
 
     /**
      * Get请求带参数 + 日志拦截器
@@ -178,7 +197,6 @@ public class OkHttpBasicTests {
         if (response.isSuccessful()) {
             log.info("response => " + response.body().string());
         }
-
 
         // 多次请求会有cookie
         Request request2 = new Request.Builder().url("https://blog.csdn.net/qq_36982160/article/details/82351373").build();
