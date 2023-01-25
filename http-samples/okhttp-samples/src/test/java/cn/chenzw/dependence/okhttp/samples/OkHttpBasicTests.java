@@ -54,7 +54,7 @@ public class OkHttpBasicTests {
         // 异步请求
         okHttpClient.newCall(request).enqueue(new Callback() {
 
-            @Overrid
+            @Override
             public void onFailure(Call call, IOException e) {
                 System.out.println("异常: " + e.getMessage());
             }
