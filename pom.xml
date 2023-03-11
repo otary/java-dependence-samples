@@ -47,6 +47,8 @@
         <module>tokenizer-samples</module>
         <module>alipay-samples</module>
         <module>github-api-samples</module>
+        <module>log-samples</module>
+        <module>log-samples/log4j2-samples</module>
     </modules>
     <packaging>pom</packaging>
 
