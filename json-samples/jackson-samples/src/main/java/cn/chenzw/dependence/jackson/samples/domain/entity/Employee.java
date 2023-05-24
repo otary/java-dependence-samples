@@ -27,7 +27,6 @@ public class Employee {
      */
     private double salary;
 
-
     /**
      * 多个住址
      */
