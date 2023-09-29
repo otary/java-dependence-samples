@@ -49,6 +49,7 @@
         <module>github-api-samples</module>
         <module>log-samples</module>
         <module>log-samples/log4j2-samples</module>
+        <module>hutool-samples</module>
     </modules>
     <packaging>pom</packaging>
 
