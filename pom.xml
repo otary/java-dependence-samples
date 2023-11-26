@@ -50,6 +50,7 @@
         <module>log-samples</module>
         <module>log-samples/log4j2-samples</module>
         <module>hutool-samples</module>
+        <module>snake-yaml-samples</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -97,6 +98,11 @@
             <version>1.18.16</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.chenzw.toolkit</groupId>
+            <artifactId>toolkit-all</artifactId>
+            <version>1.0.4</version>
+        </dependency>
     </dependencies>
 
 </project>
