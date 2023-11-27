@@ -4,12 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.kohsuke.github.GHMeta;
-import org.kohsuke.github.GHRepository;
-import org.kohsuke.github.GitHub;
-import org.kohsuke.github.GitHubBuilder;
+import org.kohsuke.github.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @RunWith(JUnit4.class)
@@ -43,5 +41,31 @@ public class GithubApiTests {
         log.info("language => {}", repository.getLanguage());
         log.info("创建日期 => {}", repository.getCreatedAt());
 
+    }
+
+    @Test
+    public void testUpload() throws IOException {
+        GitHub github = new GitHubBuilder()
+                .withOAuthToken("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")
+                .build();
+        GHRepository repository = github.getRepository("otary/git-test");
+        repository.createContent()
+                .branch("main")
+                .path("ttt/a.text")
+                .content("内容".getBytes())
+                .message("测试")
+                .commit();
+    }
+
+    @Test
+    public void testListRepoFiles() throws IOException {
+        GitHub github = new GitHubBuilder()
+                .withOAuthToken("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")
+                .build();
+        GHRepository repository = github.getRepository("otary/git-test");
+        List<GHContent> files = repository.getDirectoryContent("/", "main");
+        for (GHContent file : files) {
+            log.info("file => {} , {}", file.getDownloadUrl(), file.getHtmlUrl());
+        }
     }
 }
