@@ -1,5 +1,5 @@
 // Generated from C:/Users/chenzw/IdeaProjects/java-dependence-samples/anltr4-samples/src/main/java/cn/chenzw/anltr4/basic\SearchLexer.g4 by ANTLR 4.9.1
-package cn.chenzw.anltr4.basic.core;
+package cn.chenzw.antlr4.basic.core;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;

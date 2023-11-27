@@ -36,7 +36,7 @@
         <module>dns-java-samples</module>
         <module>zxing</module>
         <module>elasticsearch-sql-samples</module>
-        <module>anltr4-samples</module>
+        <module>antlr4-samples</module>
         <module>faker-samples</module>
         <module>jsch-samples</module>
         <module>sql-parser</module>

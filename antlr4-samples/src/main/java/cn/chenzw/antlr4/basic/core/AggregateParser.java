@@ -1,5 +1,5 @@
 // Generated from C:/Users/chenzw/IdeaProjects/java-dependence-samples/anltr4-samples/src/main/java/cn/chenzw/anltr4/basic\AggregateParser.g4 by ANTLR 4.9.1
-package cn.chenzw.anltr4.basic.core;
+package cn.chenzw.antlr4.basic.core;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
