@@ -1,6 +1,5 @@
 package cn.chenzw.dependence.javassist.basic;
 
-import cn.chenzw.denpendence.javassist.basic.domain.entity.User;
 import javassist.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
