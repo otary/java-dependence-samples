@@ -1,4 +1,4 @@
-package cn.chenzw.java.denpendence.itext7;
+package cn.chenzw.java.dependence.itext7;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;

@@ -24,7 +24,7 @@ public class ModifyClassTests {
         // pool.insertClassPath(new ClassClassPath(this.getClass()));
 
         // 获取类
-        CtClass ctClass = pool.get("cn.chenzw.denpendence.javassist.basic.domain.entity.User");
+        CtClass ctClass = pool.get("cn.chenzw.dependence.javassist.basic.domain.entity.User");
 
         // 动态添加方法
         /**

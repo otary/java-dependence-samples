@@ -1,4 +1,4 @@
-package cn.chenzw.java.denpendence.itext7;
+package cn.chenzw.java.dependence.itext7;
 
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.font.PdfFont;
