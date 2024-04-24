@@ -15,7 +15,7 @@ public class SSHClient {
 
     private Session session;
 
-    void execCmd() throws JSchException, IOException {
+    public void execCmd() throws JSchException, IOException {
         ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
         InputStream in = channelExec.getInputStream();
         channelExec.setCommand("ls");

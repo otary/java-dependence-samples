@@ -24,16 +24,23 @@ public class JschTests {
      */
     @Test
     public void testShell() throws IOException, JSchException {
+        // 构建session会话
         JSch jsch = new JSch();
         Session session = jsch.getSession("root", "82.157.19.141", 22);
         session.setConfig("StrictHostKeyChecking", "no"); // 第一次访问服务器不用输入yes
         session.setTimeout(60 * 60 * 1000);
-        session.setPassword("Otary_321");
-        session.connect();
+        session.setPassword("xxx");
 
+        // 会话连接
+        if (!session.isConnected()) {
+            session.connect();
+        }
+
+        // 创建Channel连接
         ChannelShell channelShell = (ChannelShell) session.openChannel("shell");
         InputStream inputStream = channelShell.getInputStream(); // 从远端到达的数据都能从这个流读取到
         channelShell.setPty(true);
+
         channelShell.connect();
 
         OutputStream outputStream = channelShell.getOutputStream(); // 写入该流的数据都将发送到远程端
@@ -66,15 +73,15 @@ public class JschTests {
         outputStream.close();
         inputStream.close();
         channelShell.disconnect();
-
-        /*for (String cmd : cmds) {
-            cmd = json2String(cmd);
-            printWriter.println(cmd);
-        }*/
-
         session.disconnect();
     }
 
+    /**
+     * 执行一次命令
+     *
+     * @throws JSchException
+     * @throws IOException
+     */
     @Test
     public void testExec() throws JSchException, IOException {
         JSch jsch = new JSch();
@@ -86,17 +93,65 @@ public class JschTests {
 
         ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
         InputStream in = channelExec.getInputStream();
-        channelExec.setCommand("tail -f /data/modules/tools-service/app/logs/video-parse/all-2024-04-22.log");
+        channelExec.setCommand("ls");
         channelExec.setErrStream(System.err);
         channelExec.connect();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in,
-                Charset.forName("utf8")));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in, Charset.forName("utf8")));
         String buf = null;
         while ((buf = reader.readLine()) != null) {
-            System.out.println(buf);
+            logger.info("buf => {}", buf);
         }
         // String result = IOUtils.toString(in, "UTF-8");
         channelExec.disconnect();
-        //logger.info("result => {}", result);
+        // logger.info("result => {}", result);
+    }
+
+    /**
+     * 上传文件
+     *
+     * @throws JSchException
+     * @throws SftpException
+     * @throws IOException
+     */
+    @Test
+    public void testUploadFile() throws JSchException, SftpException, IOException {
+        // 构建session会话
+        JSch jsch = new JSch();
+        Session session = jsch.getSession("root", "82.157.19.141", 22);
+        session.setConfig("StrictHostKeyChecking", "no"); // 第一次访问服务器不用输入yes
+        session.setTimeout(60 * 60 * 1000);
+        session.setPassword("xxxx");
+        session.connect();
+
+        Channel channel = session.openChannel("sftp");
+        channel.connect();
+        ChannelSftp sftp = (ChannelSftp) channel;
+
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("a.txt");
+        // sftp.setInputStream(is);
+        sftp.put(is, "/root/b.txt");
+        is.close();
+    }
+
+    /**
+     * 下载文件
+     */
+    @Test
+    public void testDownloadFile() throws JSchException, IOException, SftpException {
+        // 构建session会话
+        JSch jsch = new JSch();
+        Session session = jsch.getSession("root", "82.157.19.141", 22);
+        session.setConfig("StrictHostKeyChecking", "no"); // 第一次访问服务器不用输入yes
+        session.setTimeout(60 * 60 * 1000);
+        session.setPassword("xxxx");
+        session.connect();
+
+        Channel channel = session.openChannel("sftp");
+        channel.connect();
+        ChannelSftp sftp = (ChannelSftp) channel;
+        FileOutputStream os = new FileOutputStream(new File("a.txt"));
+        sftp.get("/root/b.txt", os);
+        os.flush();
+        os.close();
     }
 }
