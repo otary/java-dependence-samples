@@ -153,5 +153,14 @@ public class JschTests {
         sftp.get("/root/b.txt", os);
         os.flush();
         os.close();
+
+        // 创建文件目录
+        // sftp.mkdir("/root/a");
+
+        // 切换目录
+        // sftp.cd("/root");
+
+        // 文件判断
+        SftpATTRS sftpATTRS = sftp.lstat("/root/a");
     }
 }
