@@ -51,6 +51,7 @@
         <module>log-samples/log4j2-samples</module>
         <module>hutool-samples</module>
         <module>snake-yaml-samples</module>
+        <module>gitlab-api-samples</module>
     </modules>
     <packaging>pom</packaging>
 

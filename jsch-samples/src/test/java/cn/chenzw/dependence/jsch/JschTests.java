@@ -81,7 +81,7 @@ public class JschTests {
         Session session = jsch.getSession("root", "82.157.19.141", 22);
         session.setConfig("StrictHostKeyChecking", "no");  // 第一次访问服务器不用输入yes
         session.setTimeout(60 * 60 * 1000);
-        session.setPassword("Otary_321");
+        session.setPassword("xxxx");
         session.connect();
 
         ChannelExec channelExec = (ChannelExec) session.openChannel("exec");
