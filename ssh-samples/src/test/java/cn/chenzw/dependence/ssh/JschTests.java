@@ -1,7 +1,6 @@
-package cn.chenzw.dependence.jsch;
+package cn.chenzw.dependence.ssh;
 
 import com.jcraft.jsch.*;
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

@@ -38,7 +38,7 @@
         <module>elasticsearch-sql-samples</module>
         <module>antlr4-samples</module>
         <module>faker-samples</module>
-        <module>jsch-samples</module>
+        <module>ssh-samples</module>
         <module>sql-parser</module>
         <module>uasparser-samples</module>
         <module>freemarker-samples</module>
@@ -52,6 +52,7 @@
         <module>hutool-samples</module>
         <module>snake-yaml-samples</module>
         <module>gitlab-api-samples</module>
+        <module>acme4j-samples</module>
     </modules>
     <packaging>pom</packaging>
 

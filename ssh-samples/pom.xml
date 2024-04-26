@@ -8,9 +8,7 @@
         <version>1.0.0.RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
-    <artifactId>jsch-samples</artifactId>
-
+    <artifactId>ssh-samples</artifactId>
 
     <dependencies>
         <dependency>
@@ -20,10 +18,14 @@
         </dependency>
 
         <dependency>
-            <groupId>com.trilead</groupId>
-            <artifactId>trilead-ssh2</artifactId>
-            <version>1.0.0-build222</version>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-core</artifactId>
+            <version>2.12.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.sshd</groupId>
+            <artifactId>sshd-sftp</artifactId>
+            <version>2.12.1</version>
+        </dependency>
     </dependencies>
 </project>
