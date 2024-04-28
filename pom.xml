@@ -53,6 +53,8 @@
         <module>snake-yaml-samples</module>
         <module>gitlab-api-samples</module>
         <module>acme4j-samples</module>
+        <module>junrar-samples</module>
+        <module>comons-compress-samples</module>
     </modules>
     <packaging>pom</packaging>
 
