@@ -184,7 +184,7 @@ public class ZIPTests {
      */
     @Test
     public void testUnzip() throws IOException {
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("a.zip");
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.zip");
         ZipInputStream zis = new ZipInputStream(is);
         ZipEntry zipEntry = null;
         byte[] buffer = new byte[1024];
@@ -225,7 +225,7 @@ public class ZIPTests {
      */
     @Test
     public void testUnzip3() throws IOException {
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("a.zip");
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("test.zip");
         ZipArchiveInputStream zais = new ZipArchiveInputStream(is, "UTF-8");
         ArchiveEntry archiveEntry;
         while (null != (archiveEntry = zais.getNextEntry())) {
