@@ -1,4 +1,4 @@
-package cn.chenzw.java.dependence.uasparser;
+package cn.chenzw.java.dependence.webdav;
 
 import cz.mallat.uasparser.OnlineUpdater;
 import cz.mallat.uasparser.UASparser;

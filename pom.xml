@@ -55,6 +55,7 @@
         <module>acme4j-samples</module>
         <module>junrar-samples</module>
         <module>comons-compress-samples</module>
+        <module>webdav-samples</module>
     </modules>
     <packaging>pom</packaging>
 
