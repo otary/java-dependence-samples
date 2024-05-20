@@ -127,8 +127,7 @@ public class Acme4jTests {
             log.info("message => {}", message);
 
             // 此时需要手动将content内容写入到acme-challenge下的文件中
-
-
+            
             // 方式二：DNS方式质询
             /*
             Dns01Challenge challenge = auth.findChallenge(Dns01Challenge.TYPE)

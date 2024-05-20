@@ -56,6 +56,9 @@
         <module>junrar-samples</module>
         <module>comons-compress-samples</module>
         <module>webdav-samples</module>
+        <module>elasticsearch-samples</module>
+        <module>flowable-samples</module>
+        <module>k8s-client-samples</module>
     </modules>
     <packaging>pom</packaging>
 
