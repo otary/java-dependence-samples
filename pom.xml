@@ -59,6 +59,7 @@
         <module>flowable-samples</module>
         <module>k8s-client-samples</module>
         <module>ocr-samples</module>
+        <module>rules-samples</module>
     </modules>
     <packaging>pom</packaging>
 

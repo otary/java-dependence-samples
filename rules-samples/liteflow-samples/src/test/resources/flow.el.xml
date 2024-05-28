@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+    <nodes>
+        <node id="a" class="cn.chenzw.java.dependence.liteflow.component.AComponent"/>
+        <node id="b" class="cn.chenzw.java.dependence.liteflow.component.BComponent"/>
+        <node id="c" class="cn.chenzw.java.dependence.liteflow.component.CComponent"/>
+        <node id="aSwitch" class="cn.chenzw.java.dependence.liteflow.component.ASwitchComponent"/>
+        <node id="aFor" class="cn.chenzw.java.dependence.liteflow.component.AForComponent"/>
+        <node id="aBool" class="cn.chenzw.java.dependence.liteflow.component.ABooleanComponent"/>
+    </nodes>
+
+    <chain name="normal_chain">
+        THEN(a, b, c);
+    </chain>
+
+    <!-- 根据nodeId跳转 -->
+    <chain name="switch_chain">
+        SWITCH(aSwitch).to(b, c);
+    </chain>
+
+    <!-- 根据表达式ID选择 -->
+    <chain name="switch_id_chain">
+        SWITCH(aSwitch).to(b, WHEN(c).id("c"));
+    </chain>
+
+    <!-- 根据tag进行选择(v2.9.0+) -->
+    <chain name="switch_tag_chain">
+        SWITCH(aSwitch).to(
+        b.tag("cat"),
+        c.tag("dog")
+        );
+    </chain>
+
+    <!-- for循环 -->
+    <chain name="for_chain">
+        FOR(aFor).DO(THEN(a, b));
+    </chain>
+
+    <!-- 条件判断 -->
+    <chain name="if_chain">
+        IF(aBool, a, b);
+    </chain>
+</flow>
