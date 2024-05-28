@@ -24,12 +24,13 @@ public class K8sClientTests {
     @Test
     public void test() {
         Config config = new ConfigBuilder().
-                withMasterUrl("https://mymaster.com")
+                withMasterUrl("https://10.11.2.197:6443/")
                 .withWebsocketPingInterval(5 * 60 * 1000L)
                 .withMaxConcurrentRequestsPerHost(30)
                 .withTrustCerts(true)
-                .withOauthToken("")
+                .withOauthToken("eyJhbGciOiJSUzI1NiIsImtpZCI6IlU2NV9MNHdnNmplRVlEZWFUN0g1ck5ZcENFU1JHTEI5MGFzVkxQa3hjREkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZC10b2tlbi1mZm5sNCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImY2YWMyMzdiLTI4NDYtNDExMi04MzI2LWRlYzlmMTliZTMyZSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlcm5ldGVzLWRhc2hib2FyZDprdWJlcm5ldGVzLWRhc2hib2FyZCJ9.fknJJrNqFDdbc-U2mEcuxqhUt2y8VvZVPhR9yP6ZFuTY0CaZAwXrvblnBPSz2rKKZ2mmNshpXptBGaqrOTCROOZYBzlMpuMvLhUkz461z_ULWufFVNSaZiU11u-9NyLSTIHe8pUGHyRl4QgeIAXMZD9vGy0KTELZ_EGH9ZlHOSaF2Sw9swY0nU_SSPNYJpcYg5ONYPFk56b1SclTgCoVVjV9trmuhlIrX1XC_az8UfrXYro7KX2YqxuGDh4XSY7w45NMiDzlNx0aIAbraS2ZSaxYJoLKlTatZwvsgu9PDLohgYConQXgZSr5OkF3cBfsWV5bE8Ou9_6WbSsOIHHxHA")
                 .build();
+
         KubernetesClient client = new KubernetesClientBuilder()
                 .withConfig(config)
                 .build();

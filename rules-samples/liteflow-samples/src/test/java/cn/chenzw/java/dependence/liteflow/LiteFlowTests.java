@@ -3,12 +3,19 @@ package cn.chenzw.java.dependence.liteflow;
 import com.yomahub.liteflow.builder.el.LiteFlowChainELBuilder;
 import com.yomahub.liteflow.core.FlowExecutor;
 import com.yomahub.liteflow.core.FlowExecutorHolder;
+import com.yomahub.liteflow.flow.FlowBus;
 import com.yomahub.liteflow.flow.LiteflowResponse;
+import com.yomahub.liteflow.flow.entity.CmpStep;
 import com.yomahub.liteflow.property.LiteflowConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 /**
  * @author chenzw
@@ -16,6 +23,16 @@ import org.junit.runners.JUnit4;
 @Slf4j
 @RunWith(JUnit4.class)
 public class LiteFlowTests {
+
+    private static FlowExecutor flowExecutor;
+
+    @BeforeClass
+    public static void init() {
+        LiteflowConfig config = new LiteflowConfig();
+        config.setRuleSource("flow.el.xml");
+
+        flowExecutor = FlowExecutorHolder.loadInstance(config);
+    }
 
     @Test
     public void test() {
@@ -29,9 +46,18 @@ public class LiteFlowTests {
         LiteflowResponse normalResponse = flowExecutor.execute2Resp("normal_chain", "arg");
         log.info("normalResponse => {}", normalResponse.isSuccess());
 
-        if (!normalResponse.isSuccess()){
+        if (!normalResponse.isSuccess()) {
             Exception e = normalResponse.getCause();
             log.info("message => {}", e.getMessage());
+
+            Map<String, List<CmpStep>> steps = normalResponse.getExecuteSteps();
+            log.info("steps => {}", steps);
+
+            Queue<CmpStep> stepQueue = normalResponse.getExecuteStepQueue();
+            log.info("stepQueue => {}", stepQueue);
+
+            String stepStr = normalResponse.getExecuteStepStrWithTime();
+            log.info("stepStrWithTime => {}", stepStr);
         }
 
         // 选择组件
@@ -63,5 +89,14 @@ public class LiteFlowTests {
     public void testValidate() {
         boolean isValid = LiteFlowChainELBuilder.validate("THEN(a, b, h)");
         log.info("isValid => {}", isValid);
+    }
+
+    @Test
+    public void testReloadChain() {
+        // 单独刷新某一个规则
+        FlowBus.reloadChain("normal_chain", "THEN(a, b, c)");
+
+        // 刷新所有规则
+        flowExecutor.reloadRule();
     }
 }
