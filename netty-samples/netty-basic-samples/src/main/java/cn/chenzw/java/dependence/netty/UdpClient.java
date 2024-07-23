@@ -1,4 +1,4 @@
-package cn.chenzw.java.dependence.netty.udp;
+package cn.chenzw.java.dependence.netty;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;

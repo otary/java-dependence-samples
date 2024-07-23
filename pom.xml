@@ -60,6 +60,9 @@
         <module>k8s-client-samples</module>
         <module>ocr-samples</module>
         <module>rules-samples</module>
+        <module>nexus-samples</module>
+        <module>maven-model-samples</module>
+        <module>esapi-samples</module>
     </modules>
     <packaging>pom</packaging>
 

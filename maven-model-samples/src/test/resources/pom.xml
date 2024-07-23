@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.chenzw.otary</groupId>
+    <artifactId>otary-user</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <java.version>1.8</java.version>
+
+        <otary-user.version>1.0.2</otary-user.version>
+        <otary-common.version>LATEST</otary-common.version>
+        <otary-message-api.version>LATEST</otary-message-api.version>
+        <maven-jdk8-bom.version>LATEST</maven-jdk8-bom.version>
+    </properties>
+
+    <modules>
+        <module>otary-user-api</module>
+        <module>otary-user-service</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.chenzw.bom</groupId>
+                <artifactId>maven-jdk8-bom</artifactId>
+                <version>${maven-jdk8-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.chenzw.otary</groupId>
+                <artifactId>otary-user-api</artifactId>
+                <version>${otary-user.version}</version>
+            </dependency>
+
+            <!-- 基础模块 -->
+            <dependency>
+                <groupId>cn.chenzw.otary</groupId>
+                <artifactId>otary-common</artifactId>
+                <version>${otary-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.chenzw.otary</groupId>
+                <artifactId>otary-message-api</artifactId>
+                <version>${otary-message-api.version}</version>
+            </dependency>
+            <!-- /基础模块 -->
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 云效仓库 -->
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/501-release-VOLnt5/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/501-snapshot-cGnq6m/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <!-- /云效仓库 -->
+</project>

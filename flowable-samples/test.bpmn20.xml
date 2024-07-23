@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/test">
+  <process id="test" isExecutable="true">
+    <startEvent id="start" name="开始"></startEvent>
+    <userTask id="myTask1" name="myTask1" flowable:assignee="chenzw"></userTask>
+    <sequenceFlow id="start-myTask1" sourceRef="start" targetRef="myTask1"></sequenceFlow>
+    <serviceTask id="myService1" name="调用服务" flowable:class="cn.chenzw.dependence.flowable.CallExternalSystemDelegate"></serviceTask>
+    <sequenceFlow id="myTask1-myService1" sourceRef="myTask1" targetRef="myService1"></sequenceFlow>
+    <endEvent id="end" name="结束"></endEvent>
+    <sequenceFlow id="myService1-end" name="end" sourceRef="myService1" targetRef="end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_test">
+    <bpmndi:BPMNPlane bpmnElement="test" id="BPMNPlane_test">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="50.0" width="100.0" x="0.0" y="0.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="myTask1" id="BPMNShape_myTask1">
+        <omgdc:Bounds height="50.0" width="100.0" x="0.0" y="100.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="myService1" id="BPMNShape_myService1">
+        <omgdc:Bounds height="50.0" width="100.0" x="0.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="50.0" width="100.0" x="0.0" y="300.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="start-myTask1" id="BPMNEdge_start-myTask1">
+        <omgdi:waypoint x="100.0" y="25.0"></omgdi:waypoint>
+        <omgdi:waypoint x="0.0" y="125.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="myTask1-myService1" id="BPMNEdge_myTask1-myService1">
+        <omgdi:waypoint x="100.0" y="125.0"></omgdi:waypoint>
+        <omgdi:waypoint x="0.0" y="225.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="myService1-end" id="BPMNEdge_myService1-end">
+        <omgdi:waypoint x="50.0" y="250.0"></omgdi:waypoint>
+        <omgdi:waypoint x="50.0" y="325.0"></omgdi:waypoint>
+        <omgdi:waypoint x="100.0" y="325.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

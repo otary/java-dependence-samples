@@ -12,6 +12,7 @@ import org.flowable.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.repository.ProcessDefinition;
 import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.identitylink.api.IdentityLink;
 import org.flowable.task.api.Task;
 import org.flowable.validation.ProcessValidator;
 import org.flowable.validation.ProcessValidatorFactory;
@@ -24,6 +25,7 @@ import org.springframework.context.ApplicationContext;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -134,15 +136,27 @@ public class BasicTests {
                 // .tenantId("admin")
                 .deploy();
 
+        // 获取所有流程定义
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery().list();
         for (ProcessDefinition processDefinition : processDefinitions) {
             log.info("processDefinition => id = {}, key = {}", processDefinition.getId(), processDefinition.getKey());
         }
 
         RuntimeService runtimeService = processEngine.getRuntimeService();
+
         // 启动流程
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("test");
 
+        // 激活流程定义
+        // repositoryService.activateProcessDefinitionById(processInstance.getProcessDefinitionId());
+        // 挂起流程定义
+        // repositoryService.suspendProcessDefinitionById(processInstance.getProcessDefinitionId());
+
+        // 获取流程定义图片流
+        InputStream processDiagram = repositoryService.getProcessDiagram(processInstance.getProcessDefinitionId());
+        log.info("=> {}", processDiagram);
+
+        // 获取任务列表
         TaskService taskService = processEngine.getTaskService();
         List<Task> tasks = taskService.createTaskQuery()
                 .processInstanceId(processInstance.getId())
@@ -151,11 +165,19 @@ public class BasicTests {
                 tasks.stream().map((task) -> task.getName()).collect(Collectors.toList())
         );
 
+        // 完成审批
         Task task = taskService.createTaskQuery().taskAssignee("chenzw").singleResult();
         log.info("complete task => {}", task);
+        // 设置审批人
+        // taskService.setAssignee(task.getId(), "1");
         taskService.complete(task.getId());
 
+        // 认领任务
+        // taskService.claim(task.getId(), "1");
+        // 取消任务
+        // taskService.unclaim(task.getId());
 
+        // 历史记录查询
         HistoryService historyService = processEngine.getHistoryService();
         List<HistoricActivityInstance> activities =
                 historyService.createHistoricActivityInstanceQuery()
@@ -168,7 +190,20 @@ public class BasicTests {
             log.info("{} took {} milliseconds", activity.getActivityId(), activity.getDurationInMillis());
         }
 
+        // 新增组流程授权
+        repositoryService.addCandidateStarterGroup(processInstance.getProcessDefinitionId(), "test");
+        // 新增用户流程授权
+        repositoryService.addCandidateStarterUser(processInstance.getProcessDefinitionId(), "1");
+        // 删除组流程授权
+        // repositoryService.deleteCandidateStarterGroup(processInstance.getProcessDefinitionId(), "test");
+        // 删除用户流程授权
+        // repositoryService.deleteCandidateStarterUser(processInstance.getProcessDefinitionId(), "1");
+        // 获取流程定义授权列表
+        List<IdentityLink> identityLinks = repositoryService.getIdentityLinksForProcessDefinition(processInstance.getProcessDefinitionId());
+        log.info("identityLinks => {}", identityLinks);
+
     }
+
 
     private void addFlowNode(BpmnModel bpmnModel, FlowNode node, Integer xPosition, Integer yPosition) {
         GraphicInfo graphicInfo = new GraphicInfo(xPosition, yPosition, 50, 100);
