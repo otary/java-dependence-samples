@@ -6,10 +6,7 @@ import org.apache.commons.io.IOUtils;
 import org.gitlab4j.api.Constants;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
-import org.gitlab4j.api.models.Branch;
-import org.gitlab4j.api.models.FileUpload;
-import org.gitlab4j.api.models.Project;
-import org.gitlab4j.api.models.RepositoryFile;
+import org.gitlab4j.api.models.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -27,10 +24,14 @@ import java.util.List;
 @RunWith(JUnit4.class)
 public class GitlabApiTests {
 
+    private String gitlabHostURL = "http://10.11.2.113:8081";
+
+    private String personalAccessToken = "glpat-_ekjjSiSNqa8vBC-gB6Q";
+
     @Test
-    public void test() throws GitLabApiException, IOException {
+    public void testGetInfo() throws GitLabApiException, IOException {
         // 配置你的GitLab服务器信息
-        GitLabApi gitLabApi = new GitLabApi("http://10.11.2.113:8081", "glpat-kAE9ctEJ_xt8x_FK4xx1");
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
 
         // 获取项目列表
         List<Project> projects = gitLabApi.getProjectApi().getProjects();
@@ -39,7 +40,11 @@ public class GitlabApiTests {
         //获取分支列表
         List<Branch> branches = gitLabApi.getRepositoryApi().getBranches(844L);
         log.info("branches => {}", branches);
+    }
 
+    @Test
+    public void testUpload() throws IOException, GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
         // 新建文件
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("gitlabApi.zip");
         String str = Base64.getEncoder().encodeToString(IOUtils.toByteArray(is));
@@ -55,6 +60,35 @@ public class GitlabApiTests {
                 Thread.currentThread().getContextClassLoader().getResource("test.txt").getFile()
         );
         FileUpload fileUpload = gitLabApi.getProjectApi().uploadFile(844L, file);
+
         log.info("fileUpload => {}", fileUpload);
+    }
+
+    @Test
+    public void testProjectStats() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+        Project project = gitLabApi.getProjectApi().getProject("1076", true);
+        log.info("LfsObjectsSize => {}", project.getStatistics().getLfsObjectsSize());
+        log.info("PackagesSize => {}", project.getStatistics().getPackagesSize());
+        log.info("StorageSize => {}", project.getStatistics().getStorageSize());
+        log.info("RepositorySize => {}", project.getStatistics().getRepositorySize());
+        log.info("CommitCount => {}", project.getStatistics().getCommitCount());
+        log.info("JobArtifactsSize => {}", project.getStatistics().getJobArtifactsSize());
+        log.info("WikiSize => {}", project.getStatistics().getWikiSize());
+    }
+
+    @Test
+    public void testTree() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+        List<TreeItem> treeItems = gitLabApi.getRepositoryApi()
+                .getTree("1126", "/", "master", true);
+        log.info("treeItems => {}", treeItems);
+    }
+
+    @Test
+    public void testCommits() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+        List<Commit> commits = gitLabApi.getCommitsApi().getCommits("1076");
+        log.info("commits => {}", commits);
     }
 }

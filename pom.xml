@@ -63,6 +63,7 @@
         <module>nexus-samples</module>
         <module>maven-model-samples</module>
         <module>esapi-samples</module>
+        <module>http-samples/feign-samples</module>
     </modules>
     <packaging>pom</packaging>
 
