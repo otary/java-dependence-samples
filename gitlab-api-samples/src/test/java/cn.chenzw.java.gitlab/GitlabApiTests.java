@@ -1,7 +1,6 @@
 package cn.chenzw.java.gitlab;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.util.IOTools;
 import org.apache.commons.io.IOUtils;
 import org.gitlab4j.api.Constants;
 import org.gitlab4j.api.GitLabApi;
@@ -16,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author chenzw
@@ -26,10 +26,10 @@ public class GitlabApiTests {
 
     private String gitlabHostURL = "http://10.11.2.113:8081";
 
-    private String personalAccessToken = "glpat-_ekjjSiSNqa8vBC-gB6Q";
+    private String personalAccessToken = "glpat-zz8zBusSqfFVmRm9HvRr";
 
     @Test
-    public void testGetInfo() throws GitLabApiException, IOException {
+    public void testGetInfo() throws GitLabApiException {
         // 配置你的GitLab服务器信息
         GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
 
@@ -91,4 +91,56 @@ public class GitlabApiTests {
         List<Commit> commits = gitLabApi.getCommitsApi().getCommits("1076");
         log.info("commits => {}", commits);
     }
+
+    @Test
+    public void testCreateGroup() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+        GroupParams groupParams = new GroupParams()
+                .withName("myGroup")
+                .withPath("xxx");
+        Group newGroup = gitLabApi.getGroupApi().createGroup(groupParams);
+        log.info("group => {}", newGroup);
+    }
+
+    @Test
+    public void testGetGroup() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+        Group group = gitLabApi.getGroupApi().getGroup(1837L);
+        log.info("group => {}", group);
+
+        // 使用GroupId或GroupPath查询
+        Optional<Group> optional = gitLabApi.getGroupApi().getOptionalGroup("xxx");
+        if (optional.isPresent()) {
+            log.info("group => {}", optional.get());
+        } else {
+            log.error("group不存在！");
+        }
+    }
+
+    @Test
+    public void testCreateProject() throws GitLabApiException {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+
+        Project project = new Project()
+                .withName("test")
+                .withDescription("项目描述")
+                .withNamespaceId(1837)  // GroupId
+                .withPublic(false);
+        Project newProject = gitLabApi.getProjectApi().createProject(project);
+        log.info("project => {}", newProject);
+    }
+
+    @Test
+    public void testGetProject() {
+        GitLabApi gitLabApi = new GitLabApi(gitlabHostURL, personalAccessToken);
+
+        // 使用groupPath和projectName查询
+        Optional<Project> optional = gitLabApi.getProjectApi().getOptionalProject("xxx", "test");
+        if (optional.isPresent()) {
+            log.info("project => {}", optional.get());
+        } else {
+            log.info("project不存在！");
+        }
+    }
+
 }
