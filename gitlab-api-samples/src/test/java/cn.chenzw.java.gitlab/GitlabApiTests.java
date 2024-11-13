@@ -29,7 +29,8 @@ public class GitlabApiTests {
 
     private String gitlabHostURL = "http://10.11.2.113:8081";
 
-    private String personalAccessToken = "glpat-zz8zBusSqfFVmRm9HvRr";
+    // private String personalAccessToken = "glpat-zz8zBusSqfFVmRm9HvRr";
+    private String personalAccessToken = "";
 
     private GitLabApi gitLabApi;
 
@@ -278,7 +279,7 @@ public class GitlabApiTests {
 
     @Test
     public void test() {
-        gitLabApi.getUserApi().addSshKey()
+
     }
 
 }
