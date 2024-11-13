@@ -21,7 +21,8 @@ public class WebConfig {
     @Bean
     public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate(
-                new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
+                new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory())
+        );
         return restTemplate;
     }
 }

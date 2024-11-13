@@ -1,6 +1,7 @@
 package cn.chenzw.dependence.rest.template;
 
 import cn.chenzw.dependence.rest.template.interceptors.LoggingClientHttpRequestInterceptor;
+import cn.chenzw.toolkit.core.codec.Base58Kit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
@@ -32,7 +33,9 @@ public class RestTemplateBasicTest {
     @Test
     public void testGet() {
         // 添加拦截器
-        restTemplate.setInterceptors(Collections.singletonList(new LoggingClientHttpRequestInterceptor()));
+        restTemplate.setInterceptors(
+                Collections.singletonList(new LoggingClientHttpRequestInterceptor())
+        );
 
         String result = restTemplate.getForObject("https://api.github.com/repositories", String.class);
 
@@ -68,10 +71,10 @@ public class RestTemplateBasicTest {
 
         ResponseEntity<String> responseEntity = restTemplate.exchange("https://www.baidu.com?id={m}&id2={n}",
                 HttpMethod.GET,
-                new HttpEntity<>(body, headers), String.class,
+                new HttpEntity<>(body, headers),
+                String.class,
                 params
         );
-
 
     }
 }

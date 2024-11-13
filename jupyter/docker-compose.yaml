@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+#  jupyter:
+#    image: 'jupyter/minimal-notebook:x86_64-python-3.11.6'
+#    container_name: jupyter
+#    ports:
+#      - "8888:8888"
+
+  jupyter:
+    image: jupyter/scipy-notebook:x86_64-python-3.11.6
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+
+
+
