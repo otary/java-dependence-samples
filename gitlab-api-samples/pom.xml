@@ -10,11 +10,53 @@
     <name>Archetype - gitlab-api-samples</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.gitlab4j</groupId>
             <artifactId>gitlab4j-api</artifactId>
-            <version>5.7.0</version>
+            <version>6.0.0-rc.7</version>
+<!--            <scope>system</scope>-->
+<!--            <systemPath>-->
+<!--                ${project.basedir}/lib/gitlab4j-api-5.7.1-SNAPSHOT.jar-->
+<!--            </systemPath>-->
         </dependency>
+
+        <dependency>
+            <groupId>org.gitlab4j</groupId>
+            <artifactId>gitlab4j-models</artifactId>
+            <version>6.0.0-rc.7</version>
+        </dependency>
+
+
+
+        <!--        <dependency>-->
+        <!--            <groupId>jakarta.activation</groupId>-->
+        <!--            <artifactId>jakarta.activation-api</artifactId>-->
+        <!--            <version>1.2.2</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.glassfish.jersey.inject</groupId>-->
+        <!--            <artifactId>jersey-hk2</artifactId>-->
+        <!--            <version>2.39.1</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.glassfish.jersey.core</groupId>-->
+        <!--            <artifactId>jersey-client</artifactId>-->
+        <!--            <version>2.39.1</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.glassfish.jersey.media</groupId>-->
+        <!--            <artifactId>jersey-media-multipart</artifactId>-->
+        <!--            <version>2.39.1</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.glassfish.jersey.media</groupId>-->
+        <!--            <artifactId>jersey-media-json-jackson</artifactId>-->
+        <!--            <version>2.39.1</version>-->
+        <!--        </dependency>-->
     </dependencies>
 </project>

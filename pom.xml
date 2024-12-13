@@ -11,6 +11,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
     <modules>
         <module>javassist-samples</module>
         <module>commons-cli-samples</module>
@@ -53,7 +54,7 @@
         <module>gitlab-api-samples</module>
         <module>acme4j-samples</module>
         <module>junrar-samples</module>
-        <module>comons-compress-samples</module>
+        <module>commons-compress-samples</module>
         <module>webdav-samples</module>
         <module>elasticsearch-samples</module>
         <module>flowable-samples</module>
@@ -66,6 +67,7 @@
         <module>http-samples/feign-samples</module>
         <module>gitee-api-samples</module>
         <module>ipfs-samples</module>
+        <module>untitled</module>
     </modules>
     <packaging>pom</packaging>
 
