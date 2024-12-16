@@ -15,6 +15,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
 
 @Slf4j
 @RunWith(JUnit4.class)
@@ -24,6 +29,7 @@ public class HttpClientBasicTests {
     public void testGet() {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpGet httpGet = new HttpGet("http://www.baidu.com");
+            httpGet.setHeader("aaa", "111");
             try (CloseableHttpResponse response = httpClient.execute(httpGet)) {
                 Assert.assertEquals(200, response.getStatusLine().getStatusCode());
                 String body = EntityUtils.toString(response.getEntity());
@@ -32,6 +38,29 @@ public class HttpClientBasicTests {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 需要JDK11+
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    @Test
+    public void testGetUseChain() throws IOException, InterruptedException {
+        HttpClient httpClient = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_2)
+                .connectTimeout(Duration.ofSeconds(10))
+                .build();
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("https://www.baidu.com"))
+                .header("aaa", "111")
+                .build();
+        HttpResponse<String> response = httpClient.send(
+                httpRequest, HttpResponse.BodyHandlers.ofString()
+        );
+        log.info("statusCode => {}", response.statusCode());
+        log.info("body => {}", response.body());
     }
 
     @Test

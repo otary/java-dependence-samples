@@ -67,7 +67,7 @@
         <module>http-samples/feign-samples</module>
         <module>gitee-api-samples</module>
         <module>ipfs-samples</module>
-        <module>untitled</module>
+        <module>nginx-parser</module>
     </modules>
     <packaging>pom</packaging>
 

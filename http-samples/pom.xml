@@ -15,6 +15,7 @@
         <module>rest-template-samples</module>
         <module>okhttp-samples</module>
         <module>httpclient-samples</module>
+        <module>httpclient5-samples</module>
     </modules>
 
     <dependencyManagement>
