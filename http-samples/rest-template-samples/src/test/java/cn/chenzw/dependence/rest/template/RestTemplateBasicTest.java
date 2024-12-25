@@ -4,6 +4,7 @@ import cn.chenzw.dependence.rest.template.interceptors.LoggingClientHttpRequestI
 import cn.chenzw.toolkit.core.codec.Base58Kit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RestTemplateApp.class)
 @WebAppConfiguration
@@ -38,6 +39,8 @@ public class RestTemplateBasicTest {
         );
 
         String result = restTemplate.getForObject("https://api.github.com/repositories", String.class);
+
+        log.info("result => {}", result);
 
         Assert.assertNotNull(result);
     }

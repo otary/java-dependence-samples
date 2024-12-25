@@ -1,5 +1,7 @@
 package cn.chenzw.dependence.rest.template.interceptors;
 
+import cn.chenzw.dependence.rest.template.support.ClientHttpResponseWrapper;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,30 +11,31 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 /**
  * 日志拦截器
  *
  * @author chenzw
  */
+@Slf4j
 public class LoggingClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
-
-    private static final Logger logger = LoggerFactory.getLogger(LoggingClientHttpRequestInterceptor.class);
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        logger.info("- uri:[{}]", request.getURI());
-        logger.info("- method:[{}]", request.getMethod());
-        logger.info("- headers: [{}]", request.getHeaders());
-        logger.info("- boyd:[{}]", new String(body));
+        log.debug("- request => {} {}", request.getMethod(), request.getURI());
+        log.debug("- request headers: {}", request.getHeaders());
+        log.debug("- request body: {}", new String(body));
 
+        long t1 = System.currentTimeMillis();
         ClientHttpResponse response = execution.execute(request, body);
+        long t2 = System.currentTimeMillis();
 
-        logger.info("- response code:[{}]", response.getStatusCode());
-        logger.info("- response text:[{}]", response.getStatusText());
-        logger.info("- response headers:[{}]", response.getHeaders());
-        logger.info("- response body:[{}]", IOUtils.toString(response.getBody(), "UTF-8"));
-
-        return response;
+        log.debug("- response => {} - {}", response.getStatusCode(), response.getStatusText());
+        log.debug("- response headers:{}", response.getHeaders());
+        byte[] responseBodyBytes = response.getBody().readAllBytes();
+        log.debug("- response body:{}", new String(responseBodyBytes, Charset.defaultCharset()));
+        log.debug("- request cost {}ms", t2 - t1);
+        return new ClientHttpResponseWrapper(response, responseBodyBytes);
     }
 }
