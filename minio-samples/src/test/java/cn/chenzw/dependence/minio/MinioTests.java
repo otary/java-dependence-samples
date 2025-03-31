@@ -43,6 +43,7 @@ public class MinioTests {
                 // 指定上传后的文件名、上传的bucket、上传的文件流
                 PutObjectArgs args = PutObjectArgs.builder().object("rename_a.txt")
                         .bucket(MINIO_BUCKET)
+                       // .object(fileName)  // 存储到MinIO的文件名
                         .stream(is, is.available(), -1)
                         .build();
                 minioClient.putObject(args);

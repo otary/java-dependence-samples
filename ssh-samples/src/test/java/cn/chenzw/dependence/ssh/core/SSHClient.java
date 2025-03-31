@@ -1,4 +1,4 @@
-package cn.chenzw.dependence.jsch.core;
+package cn.chenzw.dependence.ssh.core;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSchException;

@@ -18,6 +18,7 @@
         <module>dozer-samples</module>
         <module>guava-samples</module>
         <module>http-samples</module>
+        <module>commons-compress-samples</module>
         <module>commons-net-samples</module>
         <module>test-samples</module>
         <module>reactor-samples</module>
@@ -68,6 +69,8 @@
         <module>gitee-api-samples</module>
         <module>ipfs-samples</module>
         <module>nginx-parser</module>
+        <module>mapstruct-samples</module>
+        <module>s3-samples</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -89,12 +92,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.chenzw.toolkit</groupId>
-            <artifactId>toolkit</artifactId>
-            <version>1.0.3</version>
         </dependency>
 
         <dependency>

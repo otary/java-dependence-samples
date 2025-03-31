@@ -18,45 +18,66 @@
         <dependency>
             <groupId>org.gitlab4j</groupId>
             <artifactId>gitlab4j-api</artifactId>
-            <version>6.0.0-rc.7</version>
-<!--            <scope>system</scope>-->
-<!--            <systemPath>-->
-<!--                ${project.basedir}/lib/gitlab4j-api-5.7.1-SNAPSHOT.jar-->
-<!--            </systemPath>-->
+            <version>6.0.0-6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/gitlab4j-api-6.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
-
-        <dependency>
+        <!-- <dependency>
+             <groupId>org.gitlab4j</groupId>
+             <artifactId>gitlab4j-api</artifactId>
+             <version>6.0.0-rc.7</version>
+         </dependency>-->
+        <!--<dependency>
             <groupId>org.gitlab4j</groupId>
             <artifactId>gitlab4j-models</artifactId>
             <version>6.0.0-rc.7</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.gitlab4j</groupId>
+            <artifactId>gitlab4j-models</artifactId>
+            <version>6.0.0-1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/gitlab4j-models-6.0.0-SNAPSHOT.jar</systemPath>
         </dependency>
-
-
-
-        <!--        <dependency>-->
-        <!--            <groupId>jakarta.activation</groupId>-->
-        <!--            <artifactId>jakarta.activation-api</artifactId>-->
-        <!--            <version>1.2.2</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.inject</groupId>-->
-        <!--            <artifactId>jersey-hk2</artifactId>-->
-        <!--            <version>2.39.1</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.core</groupId>-->
-        <!--            <artifactId>jersey-client</artifactId>-->
-        <!--            <version>2.39.1</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.media</groupId>-->
-        <!--            <artifactId>jersey-media-multipart</artifactId>-->
-        <!--            <version>2.39.1</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.glassfish.jersey.media</groupId>-->
-        <!--            <artifactId>jersey-media-json-jackson</artifactId>-->
-        <!--            <version>2.39.1</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.connectors</groupId>
+            <artifactId>jersey-apache-connector</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
     </dependencies>
 </project>

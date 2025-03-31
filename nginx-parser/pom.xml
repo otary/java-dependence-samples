@@ -2,23 +2,32 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>java-dependence-samples</artifactId>
         <groupId>cn.chenzw.dependence</groupId>
+        <artifactId>java-dependence-samples</artifactId>
         <version>1.0.0.RELEASE</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>commons-compress-samples</artifactId>
+
+    <artifactId>nginx-parser</artifactId>
 
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <!--<dependency>
+            <groupId>com.github.odiszapc</groupId>
+            <artifactId>nginxparser</artifactId>
+            <version>0.9.6</version>
+        </dependency>-->
+
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-compress</artifactId>
-            <version>1.26.1</version>
+            <groupId>com.xishankeji</groupId>
+            <artifactId>nginxparser</artifactId>
+            <version>1.0.12</version>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-package cn.chenzw.dependence.jsch.core;
+package cn.chenzw.dependence.ssh.core;
 
 
 /**
